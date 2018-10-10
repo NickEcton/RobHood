@@ -1,3 +1,82 @@
 // Place all the styles related to the api/sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.center {
+
+display: flex;
+
+flex-direction: column;
+height: 100%;
+justify-content: center;
+width: 100%;
+}
+
+.login-form-container {
+align-items: center;
+background: #fff;
+display: flex;
+height: 100%;
+width: 100%;
+}
+
+.login-form {
+  flex: 1 1 50%;
+  margin-left: 52px;
+  margin-right: 52px;
+  width: 412px;
+}
+
+.left-image {
+background-image: url(https://d2ue93q3u507c2.cloudfront.net/assets/generated_assets/94977d34f99015525dcd0fc9987fcbe6.png);
+background-position: 50%;
+background-size: cover;
+height: 100%;
+flex: 1 1 50%;
+min-width: 500px;
+}
+
+.login-submit {
+  height: 48px;
+  cursor: pointer;
+  border-radius: 4px;
+  color: white;
+  background: #21ce99;
+  border-color: #21ce99;
+  min-width: 120px;
+}
+
+.the-fuck-kyle input{
+  width: 100%;
+}
+
+.vert-form {
+  margin-bottom: 60px;
+}
+
+.label {
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+.login-input {
+    border: 1px solid;
+    border-radius: 4px;
+    height: 36px;
+    line-height: 1.5em;
+    outline: 0;
+    padding: 0 13px;
+    -webkit-transition: border-color .2s;
+    transition: border-color .2s;
+    width: 100%;
+    max-width: 350px;
+    background: #fafafa;
+    border-color: #fafafa;
+}
+
+.welcome {
+  margin-bottom: 16px;
+}
+.welcome h2 {
+  margin: 0;
+}
