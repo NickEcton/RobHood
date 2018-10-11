@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 class LoginForm extends React.Component {
 
@@ -10,6 +10,11 @@ class LoginForm extends React.Component {
       password: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.demoSubmit = this.demoSubmit.bind(this)
+  }
+
+  componentDidMount() {
+    this.props.clearErrors();
   }
 
   update(field) {
@@ -18,13 +23,22 @@ class LoginForm extends React.Component {
   });
 }
 
+  demoSubmit() {
+    this.setState({
+      username: 'ronil',
+      password: 'ronilronil'
+    })
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state)
     this.props.processform(user)
+
   }
 
   renderErrors() {
+    console.log(this.props.errors)
     return(
       <ul>
         {this.props.errors.map((error, i) => (
@@ -45,6 +59,7 @@ class LoginForm extends React.Component {
           <header className="welcome">
             <h2>Welcome to Rob's Hood</h2>
           </header>
+          {this.renderErrors()}
           <div className="information">
           <form onSubmit={this.handleSubmit} className="login-form-box">
           <div className="vert-form">
@@ -76,8 +91,9 @@ class LoginForm extends React.Component {
           </div>
           </div>
           <footer>
-            <div>
+            <div className="buttons">
               <button className="login-submit" type="submit">Sign In</button>
+              <button className="login-submit" onClick={this.demoSubmit}>Demo</button>
             </div>
           </footer>
           </form>

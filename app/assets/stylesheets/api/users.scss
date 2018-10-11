@@ -2,29 +2,117 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-.signup-progress {
-  height: 100px;
-  background-color: #21ce99;
-  width: 70%;
-  display: inline-block;
-}
-
 .submit-page {
   height: 100%;
+  padding-top: 10px;
   margin-right: auto;
   margin-left: auto;
+  margin-top: 40px;
   padding-left: 15px;
   padding-right: 15px;
   text-align: center;
-  width: 70%
+  width: 100%;
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.33333;
+  color: rgb(4, 13, 20);
 }
 
+.signup-header {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+}
+
+.RobhoodLogo {
+  display: inline-block;
+  width: 50px;
+}
+
+.signup-progress {
+  height: 40px;
+  width: 70%;
+  display: flex;
+}
+
+.signup-status {
+  width: 20%;
+  display: inline-block;
+  border-bottom: solid grey 1px;
+  text-align: center;
+}
+
+.signup-container {
+  text-align: center;
+  width: 70%;
+}
+
+.table {
+  height: 500px;
+  margin-left: 162px;
+  width: 57.5%;
+  text-align: left;
+}
+
+
 .this-form {
-  background-color: pink;
   display: flex;
   flex-direction: column;
+  width: 100%
 }
 .this-form label {
   display: inline-block;
+}
+
+
+label {
+  width: 100%;
+}
+
+li {
+  list-style: none;
+  color: red;
+}
+
+input {
+  width: 100%;
+  background: #fff;
+  height: 15px;
+  padding: 10px 16px;
+  border-radius: 4px;
+  line-height: 1.33;
+  display: block;
+  border: 1px solid #b1bfc4;
+  font-family: inherit;
+  margin: 0;
+  cursor: text;
+  text-align: start;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  text-rendering: auto;
+  margin-bottom: 12px;
+  width: 92.5%;
+}
+
+.SignInBtn {
+  width: 100%;
+  border-radius: 8px;
+  font-size: 18px;
+  padding: 10px 16px;
+  line-height: 1.33;
+  background-color: #21ce99;
+  border-color: #21ce99;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-family: inherit;
+}
+
+.application-finish-link {
+  text-align: center;
 }
