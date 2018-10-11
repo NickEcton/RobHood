@@ -44,13 +44,14 @@
 
 .signup-container {
   text-align: center;
-  width: 70%;
+  width: 100%;
+  display: flex;
 }
 
 .table {
   height: 500px;
   margin-left: 162px;
-  width: 57.5%;
+  width: 42%;
   text-align: left;
 }
 
@@ -115,4 +116,18 @@ input {
 
 .application-finish-link {
   text-align: center;
+}
+
+.gif-container {
+  margin-left: 50px;
+  margin-right: 25px;
+  margin-top: 50px;
+  vertical-align: middle;
+  display: inline-block;
+  height: 50%
+}
+
+.gif-container img {
+  width: 300px;
+  height: 300px;
 }

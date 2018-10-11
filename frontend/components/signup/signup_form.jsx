@@ -85,6 +85,7 @@ class SignupForm extends React.Component {
               <p className="application-finish-link">Already started? <a href="/#/login">Log in to complete your application</a> </p>
               </div>
             </div>
+            <div className="gif-container"><img src="https://media.giphy.com/media/gTURHJs4e2Ies/giphy.gif"/></div>
             </div>
           </div>
       )
