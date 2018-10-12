@@ -20,7 +20,7 @@ class HomeForm extends React.Component {
 
 
     if (this.props.currentUser) {
-      example =<UserHome logout={this.props.logout}/>
+      example =<UserHome payload={this.props}/>
     } else {
       example =  <AboutHome />
     }
