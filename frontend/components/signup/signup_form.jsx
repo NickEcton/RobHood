@@ -54,9 +54,12 @@ class SignupForm extends React.Component {
             <div className="signup-status">Submit</div>
           </div>
         </div>
+        <div className="render-errors">
+                  </div>
           <div className="signup-container">
-          {this.renderErrors()}
+
           <div className="table">
+                          {this.renderErrors()}
           <h1> Make Your Money Move</h1>
           <h2 className="signup-header">Robinhood lets you invest in companies you love, commission-free.</h2>
             <form className="this-form" onSubmit={this.handleSubmit}>
@@ -64,6 +67,7 @@ class SignupForm extends React.Component {
                 <input type="text"
                 value={this.state.username}
                 onChange={this.update('username')}                placeholder="Username"
+                required
                 />
               </label>
               <label>
@@ -71,12 +75,14 @@ class SignupForm extends React.Component {
                 value={this.state.email}
                 onChange={this.update('email')}
                 placeholder="Email"
+                required
                 />
               </label>
               <label>
                 <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}                placeholder="Password"
+                required
                 />
               </label>
               <button className="SignInBtn" type="submit">Sign Up!</button>
