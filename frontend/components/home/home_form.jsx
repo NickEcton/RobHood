@@ -18,7 +18,7 @@ class HomeForm extends React.Component {
     let example
 
 
-    debugger
+
     if (this.props.currentUser) {
       example =<UserHome logout={this.props.logout}/>
     } else {

@@ -34,8 +34,8 @@ class LoginForm extends React.Component {
     e.preventDefault();
     const user = Object.assign({}, this.state)
     this.props.processform(user)
-
   }
+  
 
   renderErrors() {
     console.log(this.props.errors)
@@ -94,6 +94,7 @@ class LoginForm extends React.Component {
             <div className="buttons">
               <button className="login-submit" type="submit">Sign In</button>
               <button className="login-submit" onClick={this.demoSubmit}>Demo</button>
+              <button className="login-submit"><a href="#/signup">Sign Up</a></button>
             </div>
           </footer>
           </form>
