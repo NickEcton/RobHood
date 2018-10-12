@@ -1,0 +1,220 @@
+.home-container {
+  height: 100%;
+  width: 100%;
+}
+
+.about-home-page {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-bar-prep {
+  background: #fff;
+  transition: background 400ms;
+  margin-bottom: 0;
+  top: 0;
+  border-width: 0 0 1px;
+  border-radius: 0;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  min-height: 60px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  z-index: 6969;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 100%;
+
+}
+
+.about-robin {
+  position: center;
+  float: left;
+  height: 55px;
+  width: 42px;
+  margin-top: 5px;
+}
+
+
+.navbar-header {
+  margin-right: 0;
+  margin-left: 0;
+  float: left;
+}
+
+.navbar-collapse {
+  max-height: 340px;
+  margin-right: 0;
+  margin-left: 0;
+  display: block !important;
+  height: auto !important;
+  padding-bottom: 0;
+  overflow: visible !important;
+}
+
+.navbar-right {
+  margin-right: -15p;
+  float: right !important;
+  list-style: none;
+}
+
+.navbar-right li {
+  float: left;
+  margin-left: 30px;
+  position: relative;
+  display: block;
+  font-weight: 100;
+}
+
+.navbar-right li a {
+  color: #21ce99;
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+#content {
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.33333333;
+  color: #040d14;
+}
+
+#content #hero {
+  min-height: 700px;
+  transition-duration: 400ms;
+  transition-property: opacity;
+}
+
+.row {
+  margin-left: -15px;
+  margin-right: -15px;
+  height: 100%;
+}
+
+.half-the-div {
+  width: calc(50% - 30px);
+  display: block;
+  height: inherit;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.copy {
+  margin-top: 144px;
+}
+
+#content #hero .copy {
+  margin-bottom: 45px;
+  padding: 0 12px;
+  order: -1;
+  width: 100%;
+}
+
+h1, h2, h3 {
+  margin-top: 19px;
+  font-family: inherit;
+}
+
+#content h1 {
+  font-size: 55px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 58px;
+  margin-bottom: 30px;
+}
+
+.first {
+  animation-duration: 3s;
+  animation-name: fadeInUp;
+}
+
+.second {
+  animation-duration: 4s;
+  animation-name: fadeInUp;
+}
+
+.third {
+  animation-duration: 5s;
+  animation-name: fadeInUp;
+}
+@keyframes fadeInUp {
+  from {
+    margin-top: 500px;
+    height: 300%;
+    opacity: 0;
+  }
+  to {
+    margin-top: 0px;
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+
+
+#content h4 {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+#content #hero .copy h4 {
+  max-width:380px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+#content video.phone {
+  height: auto;
+  max-width: 100%;
+  width: 452px;
+}
+
+
+
+
+
+
+
+
+
+@media (min-width: 768px) {
+  #content {
+    text-align: left;
+  }
+.container {
+    width: 750px;
+  }
+  #content #hero {
+    align-items: center;
+    display: flex;
+    height: 80vh;
+    margin-bottom: 0;
+    max-height: 1200px;
+  }
+  #content #hero .copy h4 {
+    margin: 0 0 30px;
+  }
+}
+@media (min-width: 992px) {
+.container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}

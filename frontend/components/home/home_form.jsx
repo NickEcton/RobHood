@@ -26,7 +26,7 @@ class HomeForm extends React.Component {
     }
 
     return (
-      <div>
+      <div className="home-container">
         {example}
       </div>
     )

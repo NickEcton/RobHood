@@ -25,9 +25,8 @@ class userHome extends React.Component {
   handleSubmit(e) {
     console.log(this.state)
     e.preventDefault();
-    this.props.payload.receiveAsset(this.state.asset)
-    debugger
-    this.props.payload.history.push(`/assets/${this.state.asset}`)
+    this.props.payload.receiveAsset(this.state.asset).then(() =>
+    this.props.payload.history.push(`/assets/${this.state.asset}`))
   }
 
   render() {

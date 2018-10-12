@@ -10,11 +10,27 @@ class SignupForm extends React.Component {
         email: ""
       };
       this.handleSubmit = this.handleSubmit.bind(this)
+      this.ended = this.ended.bind(this)
     }
 
     componentDidMount() {
       this.props.clearErrors();
     }
+
+    ended(e) {
+      var myvid = document.getElementById('myvideo');
+
+      var activeSource = document.querySelector("#myvideo source.active");
+      var nextSource = document.querySelector("#myvideo source.active + source") || document.querySelector("#myvideo source:first-child");
+
+
+
+      activeSource.className = "";
+      nextSource.className = "active";
+
+      myvid.src = nextSource.src;
+    }
+
 
     update(field) {
     return e => this.setState({
@@ -91,7 +107,11 @@ class SignupForm extends React.Component {
               <p className="application-finish-link">Already started? <a href="/#/login">Log in to complete your application</a> </p>
               </div>
             </div>
-            <div className="gif-container"><img src="https://media.giphy.com/media/gTURHJs4e2Ies/giphy.gif"/></div>
+            <video onEnded={this.ended} playsInline muted autoPlay width="320" height="240" className="gif-container" id='myvideo'>
+              <source className="active" src="https://d2ue93q3u507c2.cloudfront.net/assets/signup/images/application/first_experience/FirstExperienceStopwatchMovie.mp4" type="video/mp4"/>
+              <source className="" src="https://d2ue93q3u507c2.cloudfront.net/assets/signup/images/application/first_experience/FirstExperienceLockMovie.mp4" type="video/mp4"/>
+              <source className="" src="https://d2ue93q3u507c2.cloudfront.net/assets/signup/images/application/first_experience/FirstExperienceMoneyMovie.mp4" type="video/mp4"/>
+            </video>
             </div>
           </div>
       )
