@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { signup, login, logout} from './actions/session_actions'
 import configureStore from './store/store'
 import Root from './components/root'
-import { receiveAsset } from './actions/asset_actions'
+import { receiveAsset, receiveClosingPrice } from './actions/asset_actions'
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -31,6 +31,7 @@ window.signup = signup;
 window.login = login;
 window.logout = logout;
 window.receiveAsset = receiveAsset
+window.closePrice = receiveClosingPrice
 
 //
 })

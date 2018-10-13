@@ -20,7 +20,7 @@ class aboutHome extends React.Component {
             <li><a href="">Blog</a></li>
             <li><a href="">Careers</a></li>
             <li><a href="">Help</a></li>
-            <li><a href="">Log In</a></li>
+            <li><Link to= "/login">Log In</Link></li>
             <li><Link to="/signup">Sign Up</Link></li>
             </ul>
           </div>

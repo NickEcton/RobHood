@@ -1,3 +1,145 @@
 // Place all the styles related to the api/assets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.asset-show-main {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.25px;
+  line-height: 19px;
+}
+
+div {
+  box-sizing: inherit;
+}
+
+.c2W3-2ndhighcont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  min-height: 100vh;
+  position: relative;
+  z-index: 0;
+  height: 100%
+}
+
+.cont-without-nav {
+  padding-top: 64px;
+  margin-bottom: 64px;
+  text-align: center;
+  height: 664px;
+
+}
+
+.before-main-container {
+  text-align: left;
+  width: 100%;
+  height: 100%;
+}
+
+.main-container {
+  padding-top: 36px;
+  margin: 0 auto;
+  width: 1024px;
+  height: 100%;
+}
+
+.tag-line {
+  margin-top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -6px;
+  max-width: 570px;
+  background-color:black;
+  height: 40px;
+}
+
+.tags {
+  box-flex: 0;
+  flex: 0 0 auto;
+  margin: 0 12px 12px 0;
+  height: 100%;
+
+}
+
+.tag-link {
+  color: #21ce99;
+  fill: #21ce99;
+  cursor: pointer;
+  background: #182b27;
+  box-align: center;
+  align-items: center;
+  border-radius: 17px;
+  display: inline-flex;
+  height: 28px;
+  overflow: hidden;
+  padding: 0 12px 1px;
+  text-decoration: none;
+}
+
+.head-row {
+  display: flex;
+  box-pack: justify;
+  justify-content: space-between;
+  margin: 0 -6px;
+}
+
+.graph-cont {
+  box-flex: 0;
+  flex: 0 0 66.66667%;
+}
+
+.asset-header {
+  display: flex;
+  box-pack: justify;
+  justify-content: space-between;
+}
+
+.asset-header h1 {
+  max-width: 497px;
+  font-size: 36px;
+font-weight: 500;
+letter-spacing: -0.29px;
+line-height: 42px;
+margin: 0;
+}
+
+.qwe {
+  margin-bottom: 0;
+}
+
+.graph-begin {
+  width: 676px;
+  margin-bottom: 44px;
+}
+
+.graph-header {
+  margin-bottom: 12px;
+}
+
+.graph-header h1 {
+  margin-bottom: 4px;
+}
+
+.graph-asset-price {
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -0.7px;
+  line-height: 42px;
+  margin: 0;
+}
+
+.graph {
+  
+}
+
+.hide-graph {
+  display: none;
+}
