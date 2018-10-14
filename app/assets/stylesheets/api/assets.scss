@@ -1,6 +1,10 @@
 // Place all the styles related to the api/assets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  background-color: #1b1b1d;
+  color: #fff
+}
 
 .market-closed {
   background-color: #1b1b1d;
@@ -250,4 +254,110 @@ margin: 0;
 .about-grid-item-object {
   margin-bottom: 0;
   margin-top: 0;
+}
+
+.collections {
+  margin-bottom: 60px;
+}
+
+.collections-header {
+  margin-bottom: 24px;
+}
+
+.collections-header-title {
+  border-bottom: 1px solid #0e0d0d;
+  padding-bottom: 16px;
+  box-align: baseline;
+  align-items: baseline;
+  display: flex;
+  box-pack: justify;
+  justify-content: space-between;
+}
+
+.collections-header-title h2 {
+  margin: 0;
+}
+
+.collections-item-cont {
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -6px;
+  max-width: 570px;
+}
+
+.collections-item {
+  box-flex: 0;
+  flex: 0 0 auto;
+  margin: 0 12px 12px 0;
+}
+
+.order-cont {
+  margin-right: 0;
+  flex: 0 0 27.77778%;
+  display: block;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.sidebar-content {
+  margin-bottom: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 95px;
+    width: 275.77778px;
+}
+
+.take-order {
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(0, 0, 0, 0.6);
+  background: #1b1b1d;
+  padding: 0 24px;
+  position: relative;
+  border: none;
+  border-radius: 2px;
+  width: 100%;
+}
+
+.order-header {
+  align-items: center;
+  border-bottom: 1px solid #0e0d0d;
+  display: flex;
+  height: 52px;
+  justify-content: space-between;
+  margin: 0 -24px;
+  padding: 4px 24px 0;
+}
+
+.order-head-cont {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    position: relative;
+    transition: border-color 250ms;
+    width: 100%;
+}
+
+.order-asset-detail {
+  padding-bottom: 12px;
+  padding-top: 12px;
+  position: relative;
+}
+
+.order-shares-detail label {
+  align-items: center;
+  display: flex;
+  height: 48px;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+.order-shares-detail input {
+  background: #171718;
+  border-color: #171718;
+  color: #fff;
+  width: 82px;
+  text-align: right;
+  padding: 0 13px;
 }

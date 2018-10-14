@@ -11,7 +11,7 @@ class TinyLineChart extends React.Component {
   render () {
 
   	return (
-    	<LineChart width={600} height={300} data={this.props.data}
+    	<LineChart width={676} height={196} data={this.props.data}
             margin={{top: 5, right: 30, left: 20, bottom: 5}}>
        <XAxis dataKey="label" hide={true} tickLine={false}/>
        <YAxis hide={true} type="number" domain={['dataMin - 1', 'dataMax']}/>

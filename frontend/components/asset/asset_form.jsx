@@ -6,7 +6,7 @@ class AssetForm extends React.Component {
   constructor(props) {
 
     super(props)
-    this.state = { asset: "", data: 10}
+    this.state = { asset: "", data: [10]}
     this.handleSubmit = this.handleSubmit.bind(this)
     this.switch = this.switch.bind(this)
   }
@@ -20,16 +20,13 @@ class AssetForm extends React.Component {
     this.props.receiveChartFiveYear(this.props.asset.stock.symbol)
   }
   componentDidUpdate(prevProps) {
-    if (this.state.data === 10) {
-      this.setState( {data: this.props.charts.oneDay}, ()=> console.log('i have set the state'))
-    }
   if (this.props.asset.stock.symbol !== prevProps.asset.stock.symbol) {
     this.props.receiveClosingPrice(this.props.asset.stock.symbol);
     this.props.receiveChartOneDay(this.props.asset.stock.symbol);
     this.props.receiveChartOneMonth(this.props.asset.stock.symbol)
     this.props.receiveChartThreeMonth(this.props.asset.stock.symbol)
     this.props.receiveChartOneYear(this.props.asset.stock.symbol)
-    this.props.receiveChartFiveMonth(this.props.asset.stock.symbol)
+    this.props.receiveChartFiveYear(this.props.asset.stock.symbol)
   }
 }
 
@@ -118,7 +115,7 @@ class AssetForm extends React.Component {
                             </div>
                           </header>
                           <div className="graph">< Chart data={this.state.data}/></div>
-                          <nav class="graph-buttons">
+                          <nav className="graph-buttons">
                           <button value="oneDay"onClick={this.switch}>1D</button>
                           <button value="oneMonth"onClick={this.switch}>1M</button>
                           <button value="threeMonth"onClick={this.switch}>3M</button>
@@ -129,7 +126,7 @@ class AssetForm extends React.Component {
                           <header className="about-header">
                             <div className="about-border">
                             <h2>About</h2>
-                            <a class="show-more" href="#">Show More</a>
+                            <a className="show-more" href="#">Show More</a>
                             </div></header>
                           <div className="about-description-cont">
                           <h3 className="about-description">
@@ -172,14 +169,6 @@ class AssetForm extends React.Component {
                             </div>
                             <div className="about-grid-item">
                             <div className="about-grid-item-title">
-                            Website
-                            </div>
-                            <div className="about-grid-item-object">
-                              {this.props.asset.stock.website}
-                            </div>
-                            </div>
-                            <div className="about-grid-item">
-                            <div className="about-grid-item-title">
                             Sector
                             </div>
                             <div className="about-grid-item-object">
@@ -202,8 +191,39 @@ class AssetForm extends React.Component {
                               {this.props.asset.stock.issueType}
                             </div>
                             </div>
-                          </div>
+                          </div></section>
+                        <section className="collections">
+                          <header className="collections-header">
+                            <div className="collections-header-title">
+                              <h2>Collections</h2>
+                            </div>
+                          </header>
+                            <div className="collections-item-cont">
+                            {this.props.asset.stock.tags.map(function(tag, index){
+                              return <div className="collections-item" key={index}><a className="tag-link">{tag}</a></div>;
+                            })}
+                            </div>
                         </section>
+                      </div>
+                    </div>
+                    <div className="order-cont">
+                      <div className="sidebar-content">
+                        <form className="take-order">
+                          <header className="order-header">
+                            <div className="order-head-cont">
+                            <span>Buy {this.props.asset.stock.symbol}</span>
+                            </div></header>
+                          <div>
+                            <div className="order-asset-detail">
+                              <div className="order-shares-detail">
+                                <label>
+                                  <div>Shares</div>
+                                  <div><input min="0" placeholder="0" type="number" value=""/></div>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
                       </div>
                     </div>
                   </div>
