@@ -1,10 +1,7 @@
 // Place all the styles related to the api/assets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body {
-  background-color: #1b1b1d;
-  color: #fff
-}
+
 
 .market-closed {
   background-color: #1b1b1d;
@@ -39,8 +36,139 @@ div {
   height: 100%
 }
 
+.asset-search-bar {
+  background: #1b1b1d;
+  height: 64px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.asset-search-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -6px;
+}
+
+.logo-and-search {
+  align-items: center;
+  display: flex;
+  flex: 0 0 72.22222%;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.asset-hood-logo {
+  padding: 0;
+  position: absolute;
+  left: 48px;
+  padding: 0 18px 0 8px;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.asset-search-styling {
+  flex-basis: 480px;
+  margin-right: auto;
+  color: #fff;
+  margin-bottom: 0;
+  height: 36px;
+  position: relative;
+  width: 100%;
+}
+
+.asset-search-border {
+  background: #1b1b1d;
+  border: 1px solid;
+  border-color: #0e0d0d;
+  border-radius: 4px;
+  position: absolute;
+  width: 100%;
+}
+
+.asset-search-control {
+  background: #1b1b1d;
+  color: #fff;
+  border: none;
+  cursor: text;
+  height: 36px;
+  position: relative;
+}
+
+.asset-search-contorl span {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.select-placeholder {
+  color: #8c8c8e;
+  transition: color 150ms ease-out;
+  align-items: center;
+  display: flex;
+  height: 36px;
+  left: 0;
+  padding: 0 24px 0 52px;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+  box-sizing: border-box;
+  bottom: 0;
+  line-height: 34px;
+  max-width: 100%;
+  overflow: hidden;
+  right: 0;
+  text-overflow: ellipsis;
+}
+
+.asset-select-input {
+  display: inline-block;
+  align-items: center;
+  height: 36px;
+  left: 0;
+  padding: 0 24px 0 52px;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+.asset-search-input {
+  box-sizing: content-box;
+  width: 5px;
+  color: #fff;
+  background: none;
+  border: none;
+  height: 36px;
+  line-height: 36px;
+  outline: none;
+  padding: 0;
+  -webkit-appearance: none;
+  box-shadow: none;
+  cursor: default;
+  display: inline-block;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+}
+.asset-search-icon {
+  fill: #8c8c8e;
+  cursor: text;
+  left: 24px;
+  pointer-events: none;
+  position: absolute;
+  top: 10px;
+  transition: fill 150ms ease-out;
+  overflow: visible;
+  box-sizing: inherit;
+  width: 18px;
+  height: 18px;
+}
+
 .cont-without-nav {
-  padding-top: 64px;
   margin-bottom: 64px;
   text-align: center;
   height: 664px;
@@ -48,6 +176,7 @@ div {
 }
 
 .before-main-container {
+  padding-top: 64px;
   text-align: left;
   width: 100%;
   height: 100%;
@@ -59,6 +188,7 @@ div {
   width: 1024px;
   height: 100%;
 }
+
 
 .tag-line {
   margin-top: 0;
@@ -317,7 +447,7 @@ margin: 0;
   position: relative;
   border: none;
   border-radius: 2px;
-  width: 100%;
+
 }
 
 .order-header {
@@ -357,7 +487,131 @@ margin: 0;
   background: #171718;
   border-color: #171718;
   color: #fff;
-  width: 82px;
+  width: 54px;
   text-align: right;
   padding: 0 13px;
+  height: 34px;
+}
+
+.order-market-price-detail {
+    align-items: center;
+    display: flex;
+    height: 48px;
+    justify-content: space-between;
+    white-space: nowrap;
+    padding-right: 12px;
+    position: relative;
+}
+
+.order-market-price-detail a {
+  color: #21ce99;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  display: flex;
+  height: 48px;
+  padding-top: 2px;
+}
+
+.order-market-price-detail span {
+  font-weight: 500;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-cost {
+  font-weight: 500;
+  border-top: 1px solid;
+  border-color: #0e0d0d;
+  padding-right: 12px;
+}
+
+.order-cost label {
+align-items: center;
+display: flex;
+height: 48px;
+white-space: nowrap;
+align-items: center;
+display: flex;
+justify-content: space-between;
+min-height: 48px;
+}
+
+.order-estimated-cost {
+  margin-right: 12px;
+  min-width: 48px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.order-option-check {
+  align-items: center;
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.order-option-checkbox-cont {
+  margin-right: 12px;
+}
+
+.order-option-checkbox-cont div {
+  background: #21ce99;
+  border: 2px solid;
+  border-color: #21ce99;
+  border-radius: 4px;
+  height: 20px;
+  overflow: hidden;
+  position: relative;
+  width: 20px;
+}
+
+.order-option-checkbox-cont span {
+  color: #8c8c8e;
+  font-weight: 400;
+}
+
+.review-button-cont {
+  background: #1b1b1d;
+  border-top: 1px solid transparent;
+  transition: border-color 250ms;
+  margin: 0 -24px 0;
+  padding: 12px 24px 24px;
+}
+
+.review-button-btn {
+  color: #1b1b1d;
+  background: #21ce99;
+  border-color: #21ce99;
+  width: 100%;
+  font-weight: 500;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  height: 48px;
+  justify-content: center;
+  padding: 0 32px;
+  font-family: inherit;
+  -webkit-appearance: button;
+  text-transform: none;
+  overflow: visible;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  text-align: center;
+}
+
+.buying-power {
+  margin: 0 -24px 0;
+  align-items: center;
+  border-top: 1px solid;
+  border-color: #0e0d0d;
+  display: flex;
+  height: 48px;
+  justify-content: center;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect, Link } from 'react-router-dom'
 import { LineChart, Line } from 'recharts';
 import Chart from '../charts/chart.jsx'
 
@@ -9,6 +10,7 @@ class AssetForm extends React.Component {
     this.state = { asset: "", data: [10]}
     this.handleSubmit = this.handleSubmit.bind(this)
     this.switch = this.switch.bind(this)
+    this.logThemOut = this.logThemOut.bind(this)
   }
 
   componentDidMount() {
@@ -44,6 +46,9 @@ class AssetForm extends React.Component {
     }
   }
 
+  logThemOut() {
+    this.props.logout()
+  }
 
   update() {
     return e => this.setState({
@@ -62,25 +67,34 @@ class AssetForm extends React.Component {
 
     return (
       <main className="asset-show-main market-closed">
-      <div className="searchBar">
+      <div className="asset-search-bar">
         <div className="navContainer">
-          <div className="searchRow">
-          <div className="hoodLogo">
-            <a href="/#"><img className="robin" src={window.images.logo}/></a>
-          </div>
-            <div className="LogoandSearch">
-              <div className="searchStyling">
-                <form onSubmit={this.handleSubmit}>
-                  <input type="text" placeholder="Search" className="searchInput" value={this.state.asset} onChange={this.update()}/>
-                  <button type="submit">Submit</button>
-                </form>
+          <div className="asset-search-row">
+            <div className="logo-and-search">
+            <div className="asset-hood-logo">
+              <a href="/#"><img className="robin" src={window.images.logo}/></a>
+            </div>
+              <div className="asset-search-styling">
+                <div className="asset-search-border">
+                  <div className="asset-search-control">
+                    <span>
+                      <div className="select-placeholder">Search</div>
+                      <div className="asset-select-input">
+                        <form onSubmit={this.handleSubmit}>
+                          <input type="text" placeholder="Search" className="asset-search-input" value={this.state.asset} onChange={this.update()}/>
+
+                        </form>
+                      </div>
+                    </span>
+                  </div></div>
+                  <svg className="asset-search-icon" width="18px" height="18px" viewBox="0 0 18 18" version="1.1"><g id="search" transform="translate(-11.000000, -11.000000)"><path d="M23.0733726,24.4447312 C21.8075531,25.4199921 20.2215106,26 18.5,26 C14.3578644,26 11,22.6421356 11,18.5 C11,14.3578644 14.3578644,11 18.5,11 C22.6421356,11 26,14.3578644 26,18.5 C26,20.2215106 25.4199921,21.8075531 24.4447312,23.0733726 L28.1425948,26.7712362 L26.7712362,28.1425948 L23.0733726,24.4447312 Z M18.5,24 C21.5375661,24 24,21.5375661 24,18.5 C24,15.4624339 21.5375661,13 18.5,13 C15.4624339,13 13,15.4624339 13,18.5 C13,21.5375661 15.4624339,24 18.5,24 Z" id="Combined-Shape"></path></g></svg>
               </div>
             </div>
             <div className="navLinks">
               <div className="navLinkContainer">
                 <div className="homeLink">Home</div>
                 <div className="notifications">Notifications</div>
-                <button onClick={this.props.logout}>Logout!</button>
+                <Link to="/"><button onClick={this.props.logout}>Logout!</button></Link>
               </div>
             </div>
           </div>
@@ -105,7 +119,7 @@ class AssetForm extends React.Component {
                         <section className="graph-begin">
                           <header className="graph-header">
                             <h1 className="graph-asset-price">
-                            {this.props.asset.closing}
+                            ${this.props.asset.closing}
                             </h1>
                             <div className="today-movement">
                             50%
@@ -218,9 +232,37 @@ class AssetForm extends React.Component {
                               <div className="order-shares-detail">
                                 <label>
                                   <div>Shares</div>
-                                  <div><input min="0" placeholder="0" type="number" value=""/></div>
+                                  <div><input min="0" placeholder="0" value=""/></div>
                                 </label>
                               </div>
+                              <div className="order-market-price-detail">
+                                <div>
+                                  <a>Market Price</a>
+                                </div>
+                                <span>$69</span></div>
+                              <div className="order-cost">
+                                <label>
+                                  <div class="order-estimated-cost">
+                                  Estimated Cost
+                                  </div>
+                                  <div>69.69</div>
+                                </label></div>
+                            </div>
+                            <div className="order-option-check" role="button" aria-disabled="false" tabindex="0">
+                              <div className="order-option-checkbox-cont">
+                                <div role="checkbox" aria-checked="true" aria-labelledby="1" aria-disabled="false"></div>
+                              </div>
+                              <span>This order should only execute during normal market hours.</span></div>
+                            <div>
+                              <div className="review-button-cont">
+                                <div className="review-button">
+                                  <button className="review-button-btn">Review Order</button>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="buying-power">
+                              $0.00
+                               Buying Power Available
                             </div>
                           </div>
                         </form>
