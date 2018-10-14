@@ -5,10 +5,13 @@ import { withRouter } from 'react-router-dom'
 import { logout } from '../../actions/session_actions'
 import { receiveAsset } from '../../actions/asset_actions'
 
-const mapStateToProps = (state) => ({
-  currentUser: state.entities.users[state.session.id],
-  asset: state.asset
-})
+const mapStateToProps = (state) => {
+  return ({
+    currentUser: state.entities.users[state.session.id],
+    asset: state.asset,
+    portfolio: state.entities.portfolios[state.session.id]
+  })
+}
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),

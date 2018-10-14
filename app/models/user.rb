@@ -9,6 +9,10 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  has_one :portfolio,
+  foreign_key: :user_id,
+  class_name: :Portfolio
+
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64
   end

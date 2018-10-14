@@ -82,7 +82,6 @@ class AssetForm extends React.Component {
                       <div className="asset-select-input">
                         <form onSubmit={this.handleSubmit}>
                           <input type="text" placeholder="Search" className="asset-search-input" value={this.state.asset} onChange={this.update()}/>
-
                         </form>
                       </div>
                     </span>
@@ -232,7 +231,7 @@ class AssetForm extends React.Component {
                               <div className="order-shares-detail">
                                 <label>
                                   <div>Shares</div>
-                                  <div><input min="0" placeholder="0" value=""/></div>
+                                  <div><input min="0" placeholder="0" /></div>
                                 </label>
                               </div>
                               <div className="order-market-price-detail">
@@ -242,13 +241,13 @@ class AssetForm extends React.Component {
                                 <span>$69</span></div>
                               <div className="order-cost">
                                 <label>
-                                  <div class="order-estimated-cost">
+                                  <div className="order-estimated-cost">
                                   Estimated Cost
                                   </div>
                                   <div>69.69</div>
                                 </label></div>
                             </div>
-                            <div className="order-option-check" role="button" aria-disabled="false" tabindex="0">
+                            <div className="order-option-check" role="button" aria-disabled="false" tabIndex="0">
                               <div className="order-option-checkbox-cont">
                                 <div role="checkbox" aria-checked="true" aria-labelledby="1" aria-disabled="false"></div>
                               </div>
