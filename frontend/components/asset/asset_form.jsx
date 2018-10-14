@@ -6,8 +6,9 @@ class AssetForm extends React.Component {
   constructor(props) {
 
     super(props)
-    this.state = { asset: ""}
+    this.state = { asset: "", data: 10}
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.switch = this.switch.bind(this)
   }
 
   componentDidMount() {
@@ -19,6 +20,9 @@ class AssetForm extends React.Component {
     this.props.receiveChartFiveYear(this.props.asset.stock.symbol)
   }
   componentDidUpdate(prevProps) {
+    if (this.state.data === 10) {
+      this.setState( {data: this.props.charts.oneDay}, ()=> console.log('i have set the state'))
+    }
   if (this.props.asset.stock.symbol !== prevProps.asset.stock.symbol) {
     this.props.receiveClosingPrice(this.props.asset.stock.symbol);
     this.props.receiveChartOneDay(this.props.asset.stock.symbol);
@@ -30,17 +34,19 @@ class AssetForm extends React.Component {
 }
 
   switch(e) {
-    console.log('happening')
-
-    let graphs = [...document.querySelectorAll(".graph")];
-    for (var i=0; i < graphs.length; i++) {
-      if (graphs[i].classList.contains(e.target.classList[0]) &&    graphs[i].classList.contains("hide-graph")) {
-        graphs[i].classList.toggle("hide-graph")
-      } else if (!graphs[i].classList.contains('hide-graph') && !graphs[i].classList.contains(e.target.classList[0])) {
-        graphs[i].classList.toggle("hide-graph")
-      }
+    if (e.target.value === "oneDay") {
+      this.setState({ data: this.props.charts.oneDay})
+    } else if (e.target.value === "oneMonth") {
+      this.setState({ data: this.props.charts.oneMonth})
+    } else if (e.target.value === "threeMonth") {
+      this.setState( { data: this.props.charts.threeMonth})
+    } else if (e.target.value === "oneYear") {
+      this.setState( { data: this.props.charts.oneYear})
+    } else if (e.target.value === "fiveYear") {
+      this.setState( { data: this.props.charts.fiveYear})
     }
   }
+
 
   update() {
     return e => this.setState({
@@ -58,7 +64,7 @@ class AssetForm extends React.Component {
   render() {
 
     return (
-      <main className="asset-show-main">
+      <main className="asset-show-main market-closed">
       <div className="searchBar">
         <div className="navContainer">
           <div className="searchRow">
@@ -100,28 +106,104 @@ class AssetForm extends React.Component {
                       </header>
                       <div className="qwe">
                         <section className="graph-begin">
-                        <header className="graph-header">
-                          <h1 className="graph-asset-price">
-                          {this.props.asset.closing}
-                          </h1>
-                          <div className="today-movement">
-                          50%
+                          <header className="graph-header">
+                            <h1 className="graph-asset-price">
+                            {this.props.asset.closing}
+                            </h1>
+                            <div className="today-movement">
+                            50%
+                            </div>
+                            <div className="after-hours">
+                            -15%
+                            </div>
+                          </header>
+                          <div className="graph">< Chart data={this.state.data}/></div>
+                          <nav class="graph-buttons">
+                          <button value="oneDay"onClick={this.switch}>1D</button>
+                          <button value="oneMonth"onClick={this.switch}>1M</button>
+                          <button value="threeMonth"onClick={this.switch}>3M</button>
+                          <button value="oneYear"onClick={this.switch}>1Y</button>
+                          <button value="fiveYear"onClick={this.switch}>5Y</button>
+                          </nav></section>
+                        <section className="about">
+                          <header className="about-header">
+                            <div className="about-border">
+                            <h2>About</h2>
+                            <a class="show-more" href="#">Show More</a>
+                            </div></header>
+                          <div className="about-description-cont">
+                          <h3 className="about-description">
+                          {this.props.asset.stock.description + " "}
+                          <span><a> Read More</a></span>
+                          </h3>
                           </div>
-                          <div className="after-hours">
-                          -15%
+                          <div className="about-grid">
+                            <div className="about-grid-item">
+                            <div className="about-grid-item-title">
+                            Symbol
+                            </div>
+                            <div className="about-grid-item-object">
+                              {this.props.asset.stock.symbol}
+                            </div>
+                            </div>
+                            <div className="about-grid-item">
+                            <div className="about-grid-item-title">
+                            Company
+                            </div>
+                            <div className="about-grid-item-object">
+                              {this.props.asset.stock.companyName}
+                            </div>
+                            </div>
+                            <div className="about-grid-item">
+                            <div className="about-grid-item-title">
+                            CEO
+                            </div>
+                            <div className="about-grid-item-object">
+                              {this.props.asset.stock.CEO}
+                            </div>
+                            </div>
+                            <div className="about-grid-item">
+                            <div className="about-grid-item-title">
+                            Industry
+                            </div>
+                            <div className="about-grid-item-object">
+                              {this.props.asset.stock.industry}
+                            </div>
+                            </div>
+                            <div className="about-grid-item">
+                            <div className="about-grid-item-title">
+                            Website
+                            </div>
+                            <div className="about-grid-item-object">
+                              {this.props.asset.stock.website}
+                            </div>
+                            </div>
+                            <div className="about-grid-item">
+                            <div className="about-grid-item-title">
+                            Sector
+                            </div>
+                            <div className="about-grid-item-object">
+                              {this.props.asset.stock.sector}
+                            </div>
+                            </div>
+                            <div className="about-grid-item">
+                            <div className="about-grid-item-title">
+                            Exchange
+                            </div>
+                            <div className="about-grid-item-object">
+                              {this.props.asset.stock.exchange}
+                            </div>
+                            </div>
+                            <div className="about-grid-item">
+                            <div className="about-grid-item-title">
+                            IssueType
+                            </div>
+                            <div className="about-grid-item-object">
+                              {this.props.asset.stock.issueType}
+                            </div>
+                            </div>
                           </div>
-                        </header>
-                        <button className="1day"onClick={this.switch}>1Day</button>
-                        <button className="1month"onClick={this.switch}>1Month</button>
-                        <button className="3month"onClick={this.switch}>3Month</button>
-                        <button className="1year"onClick={this.switch}>1Year</button>
-                        <button className="5year"onClick={this.switch}>5Year</button>
                         </section>
-                        <div className=" 1day graph">< Chart data={this.props.charts.oneDay}/></div>
-                        <div className=" 1month graph hide-graph">< Chart data={this.props.charts.oneMonth}/></div>
-                        <div className=" 3month graph hide-graph">< Chart data={this.props.charts.threeMonth}/></div>
-                        <div className=" 1year graph hide-graph">< Chart data={this.props.charts.oneYear}/></div>
-                        <div className=" 5year graph hide-graph">< Chart data={this.props.charts.fiveYear}/></div>
                       </div>
                     </div>
                   </div>

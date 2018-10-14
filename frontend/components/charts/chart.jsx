@@ -9,13 +9,13 @@ class TinyLineChart extends React.Component {
 
 
   render () {
-    debugger
+
   	return (
     	<LineChart width={600} height={300} data={this.props.data}
             margin={{top: 5, right: 30, left: 20, bottom: 5}}>
        <XAxis dataKey="label" hide={true} tickLine={false}/>
        <YAxis hide={true} type="number" domain={['dataMin - 1', 'dataMax']}/>
-       <Line dot={false} type="monotone" dataKey="high" stroke="#8884d8"/>
+       <Line dot={false} type="monotone" dataKey="high" stroke="#21ce99"/>
        <Tooltip />
       </LineChart>
     );

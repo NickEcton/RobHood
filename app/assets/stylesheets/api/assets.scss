@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.market-closed {
+  background-color: #1b1b1d;
+  color: #fff
+}
+
 .asset-show-main {
   font-size: 13px;
   font-weight: 400;
@@ -57,7 +62,6 @@ div {
   flex-wrap: wrap;
   margin-left: -6px;
   max-width: 570px;
-  background-color:black;
   height: 40px;
 }
 
@@ -136,10 +140,114 @@ margin: 0;
   margin: 0;
 }
 
-.graph {
-  
+.graph-buttons {
+  border-color: #0e0d0d;
+  margin: 24px 0 12px;
+  display: flex;
 }
 
-.hide-graph {
-  display: none;
+.graph-buttons button {
+  cursor: pointer;
+  box-align: center;
+  border-bottom: 2px solid transparent;
+  display: flex;
+  height: 100%;
+  margin: 0 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  border: none;
+  background:none!important;
+    color:inherit;
+    font: inherit;
+    outline: none;
+      border-bottom: 1px solid;
+}
+
+.graph-buttons button:hover {
+  color: #21ce99
+}
+
+.graph-buttons button:first-child{
+  margin-left: 0;
+}
+
+.graph-buttons button:last-child{
+  margin-right: 0;
+}
+
+.about {
+  margin-bottom: 60px;
+}
+
+.about-header {
+  margin-bottom: 24px;
+}
+
+.about-border {
+  border-color: #0e0d0d;
+  border-bottom: 1px solid #0e0d0d;
+  padding-bottom: 16px;
+  box-align: baseline;
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+}
+
+.about-border h2 {
+  margin: 0
+}
+
+.about-border a {
+  color: #21ce99;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.about-description-cont {
+  margin-bottom: 15px;
+}
+
+.about-description {
+  margin: 0 0 24px;
+  max-width: 570px;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 22px;
+}
+
+.about-description a {
+  color: #21ce99;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.25px;
+  line-height: 19px;
+}
+
+.about-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 18px;
+}
+
+.about-grid-item {
+  margin: 0 6px 12px;
+  flex-basis: calc(25% - 11px);
+}
+
+.about-grid > *:nth-child(4n + 1) {
+  margin-left: 0;
+}
+
+.about-grid-item-title {
+  font-weight: 500;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.about-grid-item-object {
+  margin-bottom: 0;
+  margin-top: 0;
 }
