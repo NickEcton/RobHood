@@ -68,6 +68,17 @@ div {
   text-decoration: inherit;
 }
 
+.asset-hood-logo svg {
+  color: #fff;
+  transition: color 300ms ease-out;
+  overflow: visible;
+  fill: currentColor;
+}
+
+.navLogoStar {
+  display: none;
+}
+
 .asset-search-styling {
   flex-basis: 480px;
   margin-right: auto;
@@ -138,7 +149,7 @@ div {
 
 .asset-search-input {
   box-sizing: content-box;
-  width: 5px;
+  width: 400px;
   color: #fff;
   background: none;
   border: none;
@@ -148,7 +159,6 @@ div {
   padding: 0;
   -webkit-appearance: none;
   box-shadow: none;
-  cursor: default;
   display: inline-block;
   font-family: inherit;
   font-size: inherit;
