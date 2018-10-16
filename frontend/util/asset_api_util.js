@@ -11,3 +11,17 @@ export const receiveClosingPrice = (symbol) => {
     url: `https://api.iextrading.com/1.0/stock/${symbol}/chart/1d?chartLast=1`
   })
 }
+
+export const receivePortAssets = (ids) => {
+  return $.ajax({
+    method: "GET",
+    url: `api/assets/${ids}`
+  })
+}
+
+export const receiveAssetsPrices = (assets) => {
+  return $.ajax({
+    method: "GET",
+    url: `https://api.iextrading.com/1.0/stock/market/batch?symbols=${assets}&types=quote,chart&range=1d&chartInterval=20`
+  })
+}

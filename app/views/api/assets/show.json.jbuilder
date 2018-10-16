@@ -1,1 +1,6 @@
-json.extract! @asset, :symbol, :companyName, :exchange, :industry, :sector, :description, :CEO, :tags, :website
+debugger
+# json.symbols @assets.map { |el| el.Symbol}
+json.array! @assets do |asses|
+  # json.extract! asses, :Symbol
+  asses.Symbol
+end

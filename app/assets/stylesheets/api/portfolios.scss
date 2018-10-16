@@ -1,3 +1,138 @@
 // Place all the styles related to the api/portfolios controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.loader-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.port-sidebar-content {
+  margin-bottom: 0;
+  position: fixed;
+  top: 95px;
+}
+
+.port-sidebar-contain {
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(0, 0, 0, 0.6);
+  background: #1b1b1d;
+  border-color: #0e0d0d;
+  overflow: hidden;
+  padding-top: 0;
+  position: relative;
+  height: calc(100vh - 95px - 24px);
+  width: 275.77778px;
+  border: none;
+  border-radius: 2px;
+}
+
+.port-scroll {
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: absolute;
+}
+
+.port-rand {
+  height: calc(100vh - 95px - 24px);
+  width: 275.77778px;
+}
+
+.port-side-header {
+  border-bottom: 1px solid;
+  border-color: #0e0d0d;
+  margin-bottom: 0;
+}
+
+.port-h3 {
+  margin: 0;
+  align-items: center;
+  border-bottom: 1px solid;
+  border-color: #0e0d0d;
+  display: flex;
+  height: 52px;
+  justify-content: space-between;
+  padding: 4px 24px 0;
+}
+
+.port-side-header a {
+  color: #21ce99;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  align-items: center;
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  padding: 0 24px
+}
+
+.port-side-portfolio {
+  border-bottom: 1px solid;
+  border-color: #0e0d0d;
+  margin-bottom: 0;
+}
+
+.port-side-portfolio a {
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  align-items: center;
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.port-item-h4-cont {
+  flex: 0 1 50%;
+  margin-right: 12px;
+  min-width: 0;
+  box-sizing: inherit;
+}
+
+.port-item-h4-cont h4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+  font-weight: 500;
+}
+
+.port-side-graph-cont {
+  align-items: center;
+  display: flex;
+  flex: 0 0 64px;
+  justify-content: center;
+}
+
+.second-port-graph-cont {
+  position: relative;
+}
+
+.third-port-graph-cont {
+  position: relative;
+}
+
+.last-port-graph-cont {
+  height: 100%;
+  width: 100%;
+}
+
+*, *:before, *:after {
+-webkit-box-sizing: inherit;
+box-sizing: inherit;
+}
+
+.port-item-h3 {
+  margin: 0 0 0 12px;
+  text-align: right;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 22px;
+  flex: 0 1 50%;
+}

@@ -5,8 +5,8 @@ import ordersReducer from './orders_reducer'
 
 const entitiesReducer = combineReducers({
   users: usersReducer,
-  portfolios: portfoliosReducer,
-  orders: ordersReducer
+  portfolios: portfoliosReducer
+  // orders: ordersReducer
 });
 
 export default entitiesReducer

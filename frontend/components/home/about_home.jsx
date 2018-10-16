@@ -7,6 +7,12 @@ class aboutHome extends React.Component {
     super(props)
   }
 
+  componentDidMount() {
+  }
+  componentWillUnmount() {
+  }
+
+
   render() {
   return (
     <div className="about-home-page">

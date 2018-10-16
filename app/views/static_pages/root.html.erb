@@ -5,6 +5,12 @@
       user: current_user
     ).html_safe %>
   </script>
+  <script type ="text/javascript">
+    window.currentPortfolio = <%= render(
+      "api/portfolios/show.json.jbuilder",
+      portfolio: current_portfolio
+    ).html_safe %>
+  </script>
 <% end %>
 
 <script type="text/javascript">

@@ -1,12 +1,15 @@
 import React from 'react'
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
+import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
 class TinyLineChart extends React.Component {
   constructor(props) {
     super(props)
   }
 
+  renderToolTip() {
 
+    return 10;
+  }
 
   render () {
 
@@ -16,7 +19,7 @@ class TinyLineChart extends React.Component {
        <XAxis dataKey="label" hide={true} tickLine={false}/>
        <YAxis hide={true} type="number" domain={['dataMin - 1', 'dataMax']}/>
        <Line dot={false} type="monotone" dataKey="high" stroke="#21ce99"/>
-       <Tooltip />
+       <Tooltip isAnimationActive={false} content={this.renderToolTip} offset={-24} position={{y: -15}}/>
       </LineChart>
     );
   }

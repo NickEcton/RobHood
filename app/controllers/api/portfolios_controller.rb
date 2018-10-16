@@ -5,7 +5,7 @@ class Api::PortfoliosController < ApplicationController
   end
 
   def show
-    @porfolio = Portfolio.find_by(user_id: current_user.id)
+    @portfolio = Portfolio.find_by(user_id: current_user.id)
     render "api/portfolios/show"
   end
 

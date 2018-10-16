@@ -1,7 +1,7 @@
 import { RECEIVE_CURRENT_ASSET, RECEIVE_CLOSING_PRICE } from '../actions/asset_actions'
 
 export const assetReducer = (oldState = {}, action) => {
-  
+
   Object.freeze(oldState)
   switch(action.type) {
     case RECEIVE_CURRENT_ASSET:
