@@ -5,6 +5,13 @@ export const receiveAsset = (symbol) => {
   })
 }
 
+export const receiveAllAssets = () => {
+  return $.ajax({
+    method: "GET",
+    url: 'api/assets'
+  })
+}
+
 export const receiveClosingPrice = (symbol) => {
   return $.ajax({
     method: "GET",

@@ -139,12 +139,12 @@ div {
   align-items: center;
   height: 36px;
   left: 0;
-  padding: 0 24px 0 52px;
   position: absolute;
   top: 0;
   white-space: nowrap;
   box-sizing: border-box;
   vertical-align: middle;
+  width: 100%
 }
 
 .asset-search-input {
@@ -285,26 +285,25 @@ margin: 0;
 }
 
 .graph-buttons {
-  border-color: #0e0d0d;
   margin: 24px 0 12px;
   display: flex;
+  border-bottom: 1px solid #0e0d0d;
 }
 
 .graph-buttons button {
   cursor: pointer;
   box-align: center;
-  border-bottom: 2px solid transparent;
   display: flex;
   height: 100%;
   margin: 0 12px;
   padding-bottom: 12px;
   text-align: center;
   border: none;
+  border-bottom: 2px solid transparent;
   background:none!important;
-    color:inherit;
-    font: inherit;
-    outline: none;
-      border-bottom: 1px solid;
+  color:inherit;
+  font: inherit;
+  outline: none;
 }
 
 .graph-buttons button:hover {

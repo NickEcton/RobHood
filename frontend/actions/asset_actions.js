@@ -3,12 +3,19 @@ export const RECEIVE_CURRENT_ASSET = 'RECEIVE_CURRENT_ASSET'
 export const RECEIVE_CLOSING_PRICE = 'RECEIVE_CLOSING_PRICE'
 export const RECEIVE_PORT_ASSETS = 'RECEIVE_PORT_ASSETS'
 export const RECEIVE_ASSETS_PRICES = 'RECEIVE_ASSETS_PRICES'
-
+export const RECEIVE_ALL_ASSETS = 'RECEIVE_ALL_ASSETS'
 
 export const receiveCurrentAsset = asset => {
   return ({
     type: RECEIVE_CURRENT_ASSET,
     asset
+  })
+}
+
+export const receiveEveryAsset = assets => {
+  return ({
+    type: RECEIVE_ALL_ASSETS,
+    assets
   })
 }
 
@@ -35,6 +42,10 @@ export const receiveMultiplePrices = assets => {
 
 export const receiveAsset = asset => dispatch => (
   ApiUtil.receiveAsset(asset).then(asset => dispatch(receiveCurrentAsset(asset)))
+)
+
+export const receiveAllAssets = () => dispatch => (
+  ApiUtil.receiveAllAssets().then(assets => dispatch(receiveEveryAsset(assets)))
 )
 
 export const receiveClosingPrice = asset => dispatch => (

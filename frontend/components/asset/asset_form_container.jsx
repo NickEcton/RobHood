@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { receiveAsset, receiveClosingPrice } from '../../actions/asset_actions'
+import { receiveAsset, receiveClosingPrice, receiveAllAssets } from '../../actions/asset_actions'
 import { logout } from '../../actions/session_actions'
 import { receiveChartOneDay, receiveChartOneMonth, receiveChartThreeMonth, receiveChartOneYear, receiveChartFiveYear } from '../../actions/chart_actions'
 import { createOrder } from '../../actions/order_actions'
@@ -10,7 +10,8 @@ import AssetForm from './asset_form'
 const mapStateToProps = state => ({
   asset: state.asset,
   charts: state.chart,
-  portfolio: state.entities.portfolios[state.session.id]
+  portfolio: state.entities.portfolios[state.session.id],
+  allAssets: state.asset.allAssets
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -23,6 +24,7 @@ const mapDispatchToProps = dispatch => ({
   receiveChartThreeMonth: (symbol) => dispatch(receiveChartThreeMonth(symbol)),
   receiveChartOneYear: (symbol) => dispatch(receiveChartOneYear(symbol)),
   receiveChartFiveYear: (symbol) => dispatch(receiveChartFiveYear(symbol)),
+  receiveAllAssets: () => dispatch(receiveAllAssets())
 })
 
 
