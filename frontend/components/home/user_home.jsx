@@ -1,22 +1,24 @@
 import React from 'react'
 import { Link, withRouter, Redirect } from 'react-router-dom'
-import { LineChart, Line, Tooltip } from 'recharts';
+import { PieChart, Pie, Legend, LineChart, Line, Tooltip } from 'recharts';
 import Chart from '../charts/chart.jsx'
 import Loader from '../loading/loading.jsx'
 import TinyChart from '../charts/tiny_chart'
+import PieCharts from '../charts/pie_charts'
 
 class userHome extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { asset: ""}
+    this.state = { asset: "", pieChartData: undefined}
     this.handleSubmit = this.handleSubmit.bind(this)
     this.logThemOut = this.logThemOut.bind(this)
     this.calculatePortfolioComp = this.calculatePortfolioComp.bind(this)
     this.redirectFromPort = this.redirectFromPort.bind(this)
+    this.formatPortItems = this.formatPortItems.bind(this)
   }
 
   componentDidMount() {
-      this.props.payload.receivePortfolio(this.props.payload.currentUser.id).then(()=>{this.calculatePortfolioComp()})
+      this.props.payload.receivePortfolio(this.props.payload.currentUser.id).then(()=>{this.calculatePortfolioComp()}).then(()=> this.formatPieChartData())
   }
 
   logThemOut() {
@@ -49,20 +51,34 @@ class userHome extends React.Component {
         console.log(myHash)
       })
       portItems = Object.keys(myHash)
-      //call action with array of asset_ids to return array or asset_symbols
+
       this.props.payload.receivePortAssets(portItems).then((res)=>{
         this.props.payload.receiveAssetsPrices(res.assets)})
       }
 
+      formatPieChartData() {
+        let pieChartDatas = []
+        let items = this.props.payload.assetPrices
+        for (var key in items) {
+          if (items.hasOwnProperty(key)) {
+            pieChartDatas.push({name: key, value: items[key].quote.close})
+          }
+      }
+
+      return pieChartDatas
+      }
+
     formatPortItems() {
       let solution = []
+      let pieChartDatas = []
       let items = this.props.payload.assetPrices
       for (var key in items) {
         if (items.hasOwnProperty(key)) {
           solution.push([key, items[key].quote.close, items[key].chart]);
+          pieChartDatas.push({name: key, value: items[key].quote.close})
         }
+
     }
-    console.log('what')
     return solution
     }
 
@@ -79,13 +95,14 @@ class userHome extends React.Component {
   }
 
   render() {
-    if (!this.props.payload.portfolio.orders || !this.props.payload.assetPrices) {
+    if (!this.props.payload.portfolio.orders || !this.props.payload.assetPrices)  {
       return (
         <div className="loader-cont">
               <Loader type="spinningBubbles" color="#21ce99" />
         </div>
       )
     } else {
+
       return (
         <main className="asset-show-main market-closed">
         <div className="asset-search-bar">
@@ -146,7 +163,11 @@ class userHome extends React.Component {
                             <button value="threeMonth"onClick={this.switch}>3M</button>
                             <button value="oneYear"onClick={this.switch}>1Y</button>
                             <button value="fiveYear"onClick={this.switch}>5Y</button>
-                            </nav></section>
+                            </nav>
+                            </section>
+                            <section className="pie-charts">
+                              <PieCharts data={this.formatPieChartData()}/>
+                            </section>
                         </div>
                       </div>
                       <div className="order-cont">
@@ -167,7 +188,7 @@ class userHome extends React.Component {
                             <h3>Portfolio</h3>
                             </header>
                             {this.formatPortItems().map(function(item, index) {
-                              return <a className={`${item[0]}`}onClick={this.redirectFromPort} key={index}><div className="port-item-h4-cont"><h4>{item[0]}</h4></div><div className="port-side-graph-cont"><div><div className="second-port-graph-cont"><div className="third-port-graph-cont"><div className="last-port-graph-cont"><TinyChart data={item[2]} /> </div></div></div></div></div><h3 className="port-item-h3">{item[1]}</h3></a>;
+                              return <a className={`${item[0]}`}onClick={this.redirectFromPort} key={index}><div className="port-item-h4-cont"><h4>{item[0]}</h4></div><div className="port-side-graph-cont"><div><div className="second-port-graph-cont"><div className="third-port-graph-cont"><div className="last-port-graph-cont"><TinyChart data={item[2]} /> </div></div></div></div></div><h3 className="port-item-h3">${item[1].toFixed(2)}</h3></a>;
                             }.bind(this))}
                           </section>
                             </div>

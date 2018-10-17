@@ -22,6 +22,6 @@ export const receivePortAssets = (ids) => {
 export const receiveAssetsPrices = (assets) => {
   return $.ajax({
     method: "GET",
-    url: `https://api.iextrading.com/1.0/stock/market/batch?symbols=${assets}&types=quote,chart&range=1d&chartInterval=20`
+    url: `https://api.iextrading.com/1.0/stock/market/batch?symbols=${assets}&types=quote,chart&range=1d&chartInterval=30`
   })
 }
