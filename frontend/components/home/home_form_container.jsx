@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import HomeForm from './home_form'
 import { withRouter } from 'react-router-dom'
 import { logout } from '../../actions/session_actions'
-import { receiveAsset, receivePortAssets, receiveAssetsPrices, receiveAllAssets } from '../../actions/asset_actions'
+import { receiveAsset, receivePortAssets, receiveAssetsPrices, receiveAllAssets, receiveCrypto, receiveNews } from '../../actions/asset_actions'
 import { receivePortfolio, receiveAllSnapshots } from '../../actions/portfolio_actions'
 
 const mapStateToProps = (state) => {
@@ -24,7 +24,9 @@ const mapDispatchToProps = dispatch => ({
   receivePortfolio: id => dispatch(receivePortfolio(id)),
   receivePortAssets: id => dispatch(receivePortAssets(id)),
   receiveAssetsPrices: assets => dispatch(receiveAssetsPrices(assets)),
-  receiveAllAssets: () => dispatch(receiveAllAssets())
+  receiveAllAssets: () => dispatch(receiveAllAssets()),
+  receiveCrypto: () => dispatch(receiveCrypto()),
+  receiveNews: (symbol) => dispatch(receiveNews(symbol))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeForm))

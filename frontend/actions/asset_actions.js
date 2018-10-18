@@ -4,6 +4,8 @@ export const RECEIVE_CLOSING_PRICE = 'RECEIVE_CLOSING_PRICE'
 export const RECEIVE_PORT_ASSETS = 'RECEIVE_PORT_ASSETS'
 export const RECEIVE_ASSETS_PRICES = 'RECEIVE_ASSETS_PRICES'
 export const RECEIVE_ALL_ASSETS = 'RECEIVE_ALL_ASSETS'
+export const RECEIVE_CRYPTO = 'RECEIVE_CRYPTO'
+export const RECEIVE_NEWS = 'RECEIVE_NEWS'
 
 export const receiveCurrentAsset = asset => {
   return ({
@@ -39,6 +41,29 @@ export const receiveMultiplePrices = assets => {
     assets
   })
 }
+
+export const receiveAllCrypto = crypto => {
+  return ({
+    type: RECEIVE_CRYPTO,
+    crypto
+  })
+}
+
+export const receiveAllNews = news => {
+  return ({
+    type: RECEIVE_NEWS,
+    news
+  })
+}
+
+export const receiveNews = (symbol) => dispatch => (
+  ApiUtil.receiveNews(symbol).then(news => dispatch(receiveAllNews(news)))
+)
+
+export const receiveCrypto = () => dispatch => (
+  ApiUtil.receiveCrypto().then(crypto =>
+  dispatch(receiveAllCrypto(crypto)))
+)
 
 export const receiveAsset = asset => dispatch => (
   ApiUtil.receiveAsset(asset).then(asset => dispatch(receiveCurrentAsset(asset)))

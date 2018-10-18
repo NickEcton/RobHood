@@ -91,7 +91,7 @@
 }
 
 .port-side-header a {
-  color: #21ce99;
+  color: white;
   font-weight: 500;
   cursor: pointer;
   text-decoration: none;
@@ -118,6 +118,12 @@
   height: 60px;
   justify-content: space-between;
   padding: 0 24px;
+}
+
+.last-port-change-cont {
+  height: 100%;
+  width: 100%;
+  color: #ff69b4;
 }
 
 .port-item-h4-cont {
@@ -164,8 +170,18 @@ box-sizing: inherit;
   margin: 0 0 0 12px;
   text-align: right;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 13px;
   letter-spacing: 0;
   line-height: 22px;
   flex: 0 1 50%;
+}
+
+.the-user-news-header-content {
+  width: 675px;
+  border-bottom: 1px solid;
+  border-color: #0e0d0d;
+  padding-bottom: 16px;
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
 }

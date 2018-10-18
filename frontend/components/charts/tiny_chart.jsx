@@ -2,7 +2,9 @@ import {LineChart, Line, XAxis, YAxis} from 'recharts';
 import React from 'react'
 
 class TinyChart extends React.Component {
+
   constructor(props) {
+  
     super(props)
 
   }

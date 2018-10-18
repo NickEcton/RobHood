@@ -29,18 +29,17 @@ class AssetForm extends React.Component {
       let bod = document.querySelector("body")
       bod.style.backgroundColor = "#1b1b1d";
     }).then(()=>
-    this.setState( {data: this.props.charts.oneDay} ));
-
+    this.setState( {data: this.props.charts.oneDay} )).then(()=>this.props.receiveNews(     this.props.asset.stock.company.companyName.split(" ")[0]))
   }
   componentDidUpdate(prevProps) {
 
   if (this.props.match.params.symbol !== prevProps.match.params.symbol) {
-    Promise.all([this.props.receiveClosingPrice(this.props.asset.stock.company.symbol),
+    Promise.all([this.props.receiveClosingPrice(this.props.asset.stock.company.symbol),  this.props.receiveNews(this.props.asset.stock.company.companyName),
     this.props.receiveChartOneDay(this.props.asset.stock.company.symbol),
     this.props.receiveChartOneMonth(this.props.asset.stock.company.symbol),
     this.props.receiveChartThreeMonth(this.props.asset.stock.company.symbol),
     this.props.receiveChartOneYear(this.props.asset.stock.company.symbol),
-    this.props.receiveChartFiveYear(this.props.asset.stock.company.symbol)]).then(()=> this.setState( {data: this.props.charts.oneDay} ))
+    this.props.receiveChartFiveYear(this.props.asset.stock.company.symbol)]).then(()=>this.props.receiveNews(     this.props.asset.stock.company.companyName.split(" ")[0])).then(()=> this.setState( {data: this.props.charts.oneDay} ))
   }
     let inp = document.querySelector("#myInput")
   if (inp) {
@@ -219,8 +218,8 @@ class AssetForm extends React.Component {
   }
 
   render() {
+ if (!this.state.data || !this.props.asset.news) {
 
- if (!this.state.data || !this.props.asset.stock.news) {
    return (
    <div className="loader-cont">
          <Loader type="spinningBubbles" color="#21ce99" />
@@ -254,7 +253,7 @@ class AssetForm extends React.Component {
             </div>
             <div className="navLinks">
               <div className="navLinkContainer">
-                <div className="homeLink">Home</div>
+                <a href="/#"><div className="homeLink">Home</div></a>
                 <div className="notifications">Notifications</div>
                 <Link to="/"><button onClick={this.logThemOut}>Logout!</button></Link>
               </div>
@@ -387,18 +386,18 @@ class AssetForm extends React.Component {
                             </div>
                           </header>
                           <div>
-                          {this.props.asset.stock.news.map(function(article, index){
+                          {this.props.asset.news.articles.map(function(article, index){
                             return (
                             <div className="news-padding-provider">
                               <div className="news-flex-provider">
-                                <div style={{backgroundImage: `url(https://image.shutterstock.com/image-vector/white-feather-vector-silhouette-illustration-260nw-744679321.jpg)`}} className="news-left-image"></div>
+                                <div style={{backgroundImage: `url(${article.urlToImage})`}} className="news-left-image"></div>
                                   <div className="news-content-container">
                                     <div className="news-source-cont">
-                                      <span>{article.source}</span>
+                                      <span>{article.source.name}</span>
 
                                     </div>
                                     <div className="news-description-cont">
-                                      <h3>{article.headline}</h3>
+                                      <h3>{article.title}</h3>
                                     </div>
                                   </div>
 

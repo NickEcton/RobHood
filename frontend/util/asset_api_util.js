@@ -32,3 +32,17 @@ export const receiveAssetsPrices = (assets) => {
     url: `https://api.iextrading.com/1.0/stock/market/batch?symbols=${assets}&types=quote,chart&range=1d&chartInterval=30`
   })
 }
+
+export const receiveCrypto = () => {
+  return $.ajax({
+    method: "GET",
+    url: `https://api.iextrading.com/1.0//stock/market/crypto`
+  })
+}
+
+export const receiveNews = (symbol) => {
+  return $.ajax({
+    method: "GET",
+    url: `https://newsapi.org/v2/top-headlines?q=${symbol}&apiKey=8e6677f1f51547f693b2652d11ba0a63`
+  })
+}

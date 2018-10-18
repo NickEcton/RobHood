@@ -19,13 +19,15 @@ class userHome extends React.Component {
   }
 
   componentDidMount() {
-
+    this.setState({ pieChartData: undefined })
     let bod = document.querySelector("body")
     bod.style.backgroundColor = "#1b1b1d";
     Promise.all([this.props.payload.receivePortfolio(this.props.payload.currentUser.id),
     this.props.payload.receivePortAssets(this.calculatePortfolioComp()).then((res)=>this.props.payload.receiveAssetsPrices(res.assets)),
     this.setState({ pieChartData: this.formatPieChartData()}),
-    this.props.payload.receiveAllAssets()])
+    this.props.payload.receiveAllAssets(),
+    this.props.payload.receiveCrypto(),
+    this.props.payload.receiveNews('stocks')])
     .then(()=>{
       this.setState({ data: this.props.payload.portfolio.portfolio_snapshots, pieChartData: this.formatPieChartData() })
     })
@@ -36,7 +38,7 @@ class userHome extends React.Component {
     let that = this
         let inp = document.querySelector("#myInput")
     if (inp) {
-      this.autoComplete(inp, this.props.payload.asset.allAssets, that)
+      this.autoComplete(inp, this.props.payload.asset.allAssets)
     }
   }
 
@@ -166,6 +168,19 @@ class userHome extends React.Component {
       return pieChartDatas
       }
 
+      formatCryptoItems() {
+        if (!this.props.payload.asset.cryptos) {
+          return
+        } else {
+        let solution = []
+        let cryptos = this.props.payload.asset.cryptos
+        for (let i = 0; i < 3; i+=2) {
+          solution.push([cryptos[i].companyName.slice(0,cryptos[i].companyName.length - 4), cryptos[i].bidPrice, cryptos[i].change])
+        }
+        return solution;
+      }
+    }
+
     formatPortItems() {
       let solution = []
       let pieChartDatas = []
@@ -177,7 +192,7 @@ class userHome extends React.Component {
         }
 
     }
-    return solution
+    return solution;
     }
 
   handleSubmit(e) {
@@ -222,7 +237,7 @@ class userHome extends React.Component {
 
 
   render() {
-    if (!this.props.payload.portfolio.orders || !this.props.payload.assetPrices)  {
+    if (!this.props.payload.portfolio.orders || !this.state.pieChartData || !this.props.payload.asset.cryptos|| !this.props.payload.asset.news)  {
       return (
         <div className="loader-cont">
               <Loader type="spinningBubbles" color="#21ce99" />
@@ -258,7 +273,7 @@ class userHome extends React.Component {
               </div>
               <div className="navLinks">
                 <div className="navLinkContainer">
-                  <div className="homeLink">Home</div>
+                  <a href="/#"><div className="homeLink">Home</div></a>
                   <div className="notifications">Notifications</div>
                   <Link to="/"><button onClick={this.logThemOut}>Logout!</button></Link>
                 </div>
@@ -298,6 +313,35 @@ class userHome extends React.Component {
                             <section className="pie-charts">
                               <PieCharts data1={this.state.pieChartData}/>
                             </section>
+                            <section className="news">
+                              <header className= "news-header-cont">
+                                <div className="the-user-news-header-content">
+                                <h2 style={{margin: '0'}}>News</h2>
+                                <a>Show More</a>
+                                </div>
+                              </header>
+                              <div>
+                              {this.props.payload.asset.news.articles.map(function(article, index){
+                                return (
+                                <div className="news-padding-provider">
+                                  <div className="news-flex-provider">
+                                    <div style={{backgroundImage: `url(${article.urlToImage})`}} className="news-left-image"></div>
+                                      <div className="news-content-container">
+                                        <div className="news-source-cont">
+                                          <span>{article.source.name}</span>
+
+                                        </div>
+                                        <div className="news-description-cont">
+                                          <h3>{article.title}</h3>
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                    <a className= "rand-a" href={article.url}></a>
+                                  </div>);
+                              })}
+                              </div>
+                            </section>
                         </div>
                       </div>
                       <div className="order-cont">
@@ -310,8 +354,11 @@ class userHome extends React.Component {
                             <header className="port-h3">
                             <h3>Cryptocurrencies</h3>
                             </header>
+                            {this.formatCryptoItems().map(function(item, index) {
+                              return <a className={`${item[0]}`}onClick={this.redirectFromPort} key={index}><div className="port-item-h4-cont"><h4>{item[0]}</h4></div><div className="port-side-graph-cont"><div><div className="second-port-graph-cont"><div className="third-port-graph-cont"><div className="last-port-change-cont">{item[2]} </div></div></div></div></div><h3 className="port-item-h3">${item[1].toFixed(2)}</h3></a>;
+                            }.bind(this))}
                             </div>
-                            <a href=""></a>
+
                           </section>
                           <section className="port-side-portfolio">
                             <header className="port-h3">
