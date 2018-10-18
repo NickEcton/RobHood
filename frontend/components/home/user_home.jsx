@@ -138,6 +138,7 @@ class userHome extends React.Component {
   }
 
 
+
     calculatePortfolioComp() {
       let portItems = []
       let myHash = {}
@@ -211,13 +212,6 @@ class userHome extends React.Component {
     this.props.payload.history.push(`/assets/${s}`))
   }
 
-  data2() {
-  const data02 =
-  [{name: 'Group A', value: 2400}, {name: 'Group B',     value: 4567},
-                    {name: 'Group C', value: 1398}, {name: 'Group D', value: 9800},
-                    {name: 'Group E', value: 3908}, {name: 'Group F', value: 4800}];
-                    return data02
-                  }
 
   switch(e) {
     let range = this.props.payload.portfolio.portfolio_snapshots
@@ -237,7 +231,7 @@ class userHome extends React.Component {
 
 
   render() {
-    if (!this.props.payload.portfolio.orders || !this.state.pieChartData || !this.props.payload.asset.cryptos|| !this.props.payload.asset.news)  {
+    if (!this.props.payload.portfolio.orders || !this.state.pieChartData || !this.props.payload.asset.cryptos|| !this.props.payload.asset.news || !this.state.data)  {
       return (
         <div className="loader-cont">
               <Loader type="spinningBubbles" color="#21ce99" />
@@ -292,13 +286,10 @@ class userHome extends React.Component {
                           <section className="graph-begin">
                             <header className="graph-header">
                               <h1 className="graph-asset-price">
-                              Portfolio Value {this.calculateValue()}
+                              ${this.state.data[this.state.data.length - 1].value}
                               </h1>
                               <div className="today-movement">
-                              50%
-                              </div>
-                              <div className="after-hours">
-                              -15%
+                              {(this.state.data[this.state.data.length - 1].value - this.state.data[0].value)}%
                               </div>
                             </header>
                             <div className="graph">< UserChart data={this.state.data}/></div>

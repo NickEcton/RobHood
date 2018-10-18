@@ -283,12 +283,12 @@ class AssetForm extends React.Component {
                             ${this.props.asset.closing}
                             </h1>
                             <div className="today-movement">
-                            ${this.calculatePriceChange().toFixed(2)} ({this.calculatePricePercentChange().toFixed(2)}%)
+                            ${this.props.asset.stock.quote.change.toFixed(2)} ({this.props.asset.stock.quote.changePercent.toFixed(2)}%)
                             </div>
                             <div className="after-hours">
                             </div>
                           </header>
-                          <div className="graph">< Chart data={this.state.data}/></div>
+                          <div className="graph">< Chart data={this.state.data} openPrice ={this.props.asset.stock.quote.open} priceFlux= {this.props.asset.stock.quote.change} priceFluxPercent={this.props.asset.stock.quote.changePercent} price={this.props.asset.closing}/></div>
                           <nav className="graph-buttons">
                           <button value="oneDay"onClick={this.switch}>1D</button>
                           <button value="oneMonth"onClick={this.switch}>1M</button>
@@ -445,7 +445,7 @@ class AssetForm extends React.Component {
                             <div>
                               <div className="review-button-cont">
                                 <div className="review-button">
-                                  <button className="review-button-btn">Review Order</button>
+                                  <button className="review-button-btn">Place Order</button>
                                 </div>
                               </div>
                             </div>

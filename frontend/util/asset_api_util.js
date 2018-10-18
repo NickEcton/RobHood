@@ -1,7 +1,7 @@
 export const receiveAsset = (symbol) => {
   return $.ajax({
     method: "GET",
-    url: `https://api.iextrading.com/1.0//stock/${symbol}/batch?types=news,company`
+    url: `https://api.iextrading.com/1.0//stock/${symbol}/batch?types=quote,company`
   })
 }
 
