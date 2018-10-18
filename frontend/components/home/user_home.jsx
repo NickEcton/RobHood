@@ -34,9 +34,8 @@ class userHome extends React.Component {
 
   componentDidUpdate(prevProps) {
     let that = this
-
-    if (this.props.payload.assetPrices) {
-      let inp = document.querySelector("#myInput")
+        let inp = document.querySelector("#myInput")
+    if (inp) {
       this.autoComplete(inp, this.props.payload.asset.allAssets, that)
     }
   }

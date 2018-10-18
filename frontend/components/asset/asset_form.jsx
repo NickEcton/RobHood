@@ -17,17 +17,24 @@ class AssetForm extends React.Component {
   }
 
   componentDidMount() {
+
+    this.props.receiveAsset(this.props.match.params.symbol).then(()=>
     Promise.all([this.props.receiveClosingPrice(this.props.asset.stock.company.symbol),
     this.props.receiveChartOneDay(this.props.asset.stock.company.symbol),
     this.props.receiveChartOneMonth(this.props.asset.stock.company.symbol),
     this.props.receiveChartThreeMonth(this.props.asset.stock.company.symbol),
     this.props.receiveChartOneYear(this.props.asset.stock.company.symbol),
-    this.props.receiveChartFiveYear(this.props.asset.stock.company.symbol)]).then(()=>
-    this.setState( {data: this.props.charts.oneDay} ))
-    this.props.receiveAllAssets();
+    this.props.receiveChartFiveYear(this.props.asset.stock.company.symbol)]))
+    this.props.receiveAllAssets().then(()=> {
+      let bod = document.querySelector("body")
+      bod.style.backgroundColor = "#1b1b1d";
+    }).then(()=>
+    this.setState( {data: this.props.charts.oneDay} ));
+
   }
   componentDidUpdate(prevProps) {
-  if (this.props.asset.stock.company.symbol !== prevProps.asset.stock.company.symbol) {
+
+  if (this.props.match.params.symbol !== prevProps.match.params.symbol) {
     Promise.all([this.props.receiveClosingPrice(this.props.asset.stock.company.symbol),
     this.props.receiveChartOneDay(this.props.asset.stock.company.symbol),
     this.props.receiveChartOneMonth(this.props.asset.stock.company.symbol),
@@ -35,9 +42,8 @@ class AssetForm extends React.Component {
     this.props.receiveChartOneYear(this.props.asset.stock.company.symbol),
     this.props.receiveChartFiveYear(this.props.asset.stock.company.symbol)]).then(()=> this.setState( {data: this.props.charts.oneDay} ))
   }
-
-  if (this.props.allAssets) {
     let inp = document.querySelector("#myInput")
+  if (inp) {
     this.autoComplete(inp, this.props.allAssets)
   }
 }
