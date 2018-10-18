@@ -18,8 +18,8 @@ const data02 =
 	render () {
   	return (
     	<PieChart width={800} height={400}>
-        <Pie animationBegin={2000} data={this.props.data1} cx={'25%'} cy={125} innerRadius={60} outerRadius={80} fill="red" label/>
-        <Pie animationBegin={1200} data={this.data2()} cx={'75%'} cy={125} innerRadius={60} outerRadius={80} fill="#82ca9d" label/>
+        <Pie dataKey={'value'} animationBegin={0} data={this.props.data1} cx={'25%'} cy={125} innerRadius={60} outerRadius={80} fill="#82ca9d" label/>
+        <Pie dataKey={'value'} animationBegin={0} data={this.data2()} cx={'75%'} cy={125} innerRadius={60} outerRadius={80} fill="#82ca9d" label/>
         <Tooltip/>
        </PieChart>
     );

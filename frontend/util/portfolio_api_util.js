@@ -4,3 +4,10 @@ export const receivePortfolio = (id) => {
     url: `api/portfolios/${id}`
   })
 }
+
+export const receiveAllSnapshots = (id) =>  {
+  return $.ajax({
+    method: "GET",
+    url: `api/portfolio_snapshots/${id}`
+  })
+}

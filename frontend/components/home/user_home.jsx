@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, withRouter, Redirect } from 'react-router-dom'
 import { PieChart, Pie, Legend, LineChart, Line, Tooltip } from 'recharts';
-import Chart from '../charts/chart.jsx'
+import UserChart from '../charts/user_chart.jsx'
 import Loader from '../loading/loading.jsx'
 import TinyChart from '../charts/tiny_chart'
 import PieCharts from '../charts/pie_charts'
@@ -9,119 +9,97 @@ import PieCharts from '../charts/pie_charts'
 class userHome extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { asset: "", pieChartData: undefined}
+    this.state = { asset: "", pieChartData: undefined, data: undefined}
     this.handleSubmit = this.handleSubmit.bind(this)
     this.logThemOut = this.logThemOut.bind(this)
     this.calculatePortfolioComp = this.calculatePortfolioComp.bind(this)
     this.redirectFromPort = this.redirectFromPort.bind(this)
     this.formatPortItems = this.formatPortItems.bind(this)
+    this.switch = this.switch.bind(this)
   }
 
   componentDidMount() {
-      this.props.payload.receivePortfolio(this.props.payload.currentUser.id).then(()=>{this.calculatePortfolioComp()}).then(()=> this.formatPieChartData())
-      this.props.payload.receiveAllAssets()
+
+    let bod = document.querySelector("body")
+    bod.style.backgroundColor = "#1b1b1d";
+    Promise.all([this.props.payload.receivePortfolio(this.props.payload.currentUser.id),
+    this.props.payload.receivePortAssets(this.calculatePortfolioComp()).then((res)=>this.props.payload.receiveAssetsPrices(res.assets)),
+    this.setState({ pieChartData: this.formatPieChartData()}),
+    this.props.payload.receiveAllAssets()])
+    .then(()=>{
+      this.setState({ data: this.props.payload.portfolio.portfolio_snapshots, pieChartData: this.formatPieChartData() })
+    })
   }
 
+
   componentDidUpdate(prevProps) {
+    let that = this
+
     if (this.props.payload.assetPrices) {
       let inp = document.querySelector("#myInput")
-      this.autoComplete(inp, this.props.payload.asset.allAssets)
+      this.autoComplete(inp, this.props.payload.asset.allAssets, that)
     }
   }
 
-  autoComplete(inp, arr) {
+  autoComplete(inp, arr, that) {
 
-    /*the autocomplete function takes two arguments,
-    the text field element and an array of possible autocompleted values:*/
     var currentFocus;
-    /*execute a function when someone writes in the text field:*/
-    inp.addEventListener("input", function(e) {
+    inp.addEventListener("input", function(e, that) {
         var a, b, i, val = this.value;
-        /*close any already open lists of autocompleted values*/
         closeAllLists();
         if (!val) { return false;}
         currentFocus = -1;
-        /*create a DIV element that will contain the items (values):*/
         a = document.createElement("DIV");
         a.setAttribute("id", this.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
-        /*append the DIV element as a child of the autocomplete container:*/
         this.parentNode.appendChild(a);
-        /*for each item in the array...*/
         for (i = 0; i < Object.keys(arr).length; i++) {
-          /*check if the item starts with the same letters as the text field value:*/
           if (arr[i].Symbol.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-            /*create a DIV element for each matching element:*/
 
             if (document.querySelectorAll(".autocomplete-items > div").length === 5) {
               break
             }
             b = document.createElement("DIV");
-            /*make the matching letters bold:*/
             b.innerHTML = "<strong>" + arr[i].Symbol.substr(0, val.length) + "</strong>";
             b.innerHTML += arr[i].Symbol.substr(val.length);
-            /*insert a input field that will hold the current array item's value:*/
             b.innerHTML += "<input type='hidden' value='" + arr[i].Symbol + "'>";
-            /*execute a function when someone clicks on the item value (DIV element):*/
                 b.addEventListener("click", function(e) {
-                /*insert the value for the autocomplete text field:*/
-
-                inp.value = this.getElementsByTagName("input")[0].value;
-                /*close the list of autocompleted values,
-                (or any other open lists of autocompleted values:*/
                 closeAllLists();
                 document.querySelector("#myInput").value= e.target.children[1].value
-
                 document.querySelector("#hidden-submit").click()
             });
             a.appendChild(b);
           }
         }
     });
-    /*execute a function presses a key on the keyboard:*/
     inp.addEventListener("keydown", function(e) {
         var x = document.getElementById(this.id + "autocomplete-list");
         if (x) x = x.getElementsByTagName("div");
         if (e.keyCode == 40) {
-          /*If the arrow DOWN key is pressed,
-          increase the currentFocus variable:*/
           currentFocus++;
-          /*and and make the current item more visible:*/
           addActive(x);
         } else if (e.keyCode == 38) { //up
-          /*If the arrow UP key is pressed,
-          decrease the currentFocus variable:*/
           currentFocus--;
-          /*and and make the current item more visible:*/
           addActive(x);
         } else if (e.keyCode == 13) {
-          /*If the ENTER key is pressed, prevent the form from being submitted,*/
-
           if (currentFocus > -1) {
-            /*and simulate a click on the "active" item:*/
             if (x) x[currentFocus].click();
           }
         }
     });
     function addActive(x) {
-      /*a function to classify an item as "active":*/
       if (!x) return false;
-      /*start by removing the "active" class on all items:*/
       removeActive(x);
       if (currentFocus >= x.length) currentFocus = 0;
       if (currentFocus < 0) currentFocus = (x.length - 1);
-      /*add class "autocomplete-active":*/
       x[currentFocus].classList.add("autocomplete-active");
     }
     function removeActive(x) {
-      /*a function to remove the "active" class from all autocomplete items:*/
       for (var i = 0; i < x.length; i++) {
         x[i].classList.remove("autocomplete-active");
       }
     }
     function closeAllLists(elmnt) {
-      /*close all autocomplete lists in the document,
-      except the one passed as an argument:*/
       var x = document.getElementsByClassName("autocomplete-items");
       for (var i = 0; i < x.length; i++) {
         if (elmnt != x[i] && elmnt != inp) {
@@ -129,7 +107,6 @@ class userHome extends React.Component {
       }
     }
   }
-  /*execute a function when someone clicks in the document:*/
   document.addEventListener("click", function (e) {
       closeAllLists(e.target);
   });
@@ -149,9 +126,13 @@ class userHome extends React.Component {
   calculateValue() {
 
     let val = 0
+    if (this.props.payload.currentUser.id === 31) {
+      val += 81258
+    }
       this.props.payload.portfolio.orders.forEach((el) => {
         val += (el.price * el.quantity)
       });
+
     return val
   }
 
@@ -159,19 +140,23 @@ class userHome extends React.Component {
     calculatePortfolioComp() {
       let portItems = []
       let myHash = {}
+      if (!this.props.payload.portfolio.orders) {
+        return
+      } else {
       this.props.payload.portfolio.orders.forEach((el) => {
         myHash[el.asset_id] = myHash[el.asset_id] || 0
         myHash[el.asset_id] += el.quantity
         console.log(myHash)
       })
       portItems = Object.keys(myHash)
-
-      this.props.payload.receivePortAssets(portItems).then((res)=>{
-        this.props.payload.receiveAssetsPrices(res.assets)})
-      }
+        return portItems
+       }
+     }
 
       formatPieChartData() {
+
         let pieChartDatas = []
+
         let items = this.props.payload.assetPrices
         for (var key in items) {
           if (items.hasOwnProperty(key)) {
@@ -198,10 +183,12 @@ class userHome extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-  
-    e.persist()
-    this.props.payload.receiveAsset(e.target.children[0].children[0].value).then(() =>
-    this.props.payload.history.push(`/assets/${e.target.children[0].children[0].value}`))
+
+    this.setState({asset: e.target.children[0].children[0].value}, ()=>{
+      e.persist()
+        this.props.payload.receiveAsset(this.state.asset).then(() =>
+        this.props.payload.history.push(`/assets/${this.state.asset}`))
+    })
   }
 
   redirectFromPort(symbol) {
@@ -209,6 +196,31 @@ class userHome extends React.Component {
     this.props.payload.receiveAsset(s).then(() =>
     this.props.payload.history.push(`/assets/${s}`))
   }
+
+  data2() {
+  const data02 =
+  [{name: 'Group A', value: 2400}, {name: 'Group B',     value: 4567},
+                    {name: 'Group C', value: 1398}, {name: 'Group D', value: 9800},
+                    {name: 'Group E', value: 3908}, {name: 'Group F', value: 4800}];
+                    return data02
+                  }
+
+  switch(e) {
+    let range = this.props.payload.portfolio.portfolio_snapshots
+    if (e.target.value === "oneDay") {
+      this.setState({ data: range.slice(range.length - 30)})
+    } else if (e.target.value === "oneMonth") {
+      this.setState({ data: range.slice(range.length - 30)})
+    } else if (e.target.value === "threeMonth") {
+      this.setState( { data: range.slice(range.length - 90)})
+    } else if (e.target.value === "oneYear") {
+      this.setState( { data: range.slice(range.length - 365)})
+    } else if (e.target.value === "fiveYear") {
+      this.setState( { data: range})
+    }
+  }
+
+
 
   render() {
     if (!this.props.payload.portfolio.orders || !this.props.payload.assetPrices)  {
@@ -275,7 +287,7 @@ class userHome extends React.Component {
                               -15%
                               </div>
                             </header>
-                            <div className="graph">< Chart data={this.state.data}/></div>
+                            <div className="graph">< UserChart data={this.state.data}/></div>
                             <nav className="graph-buttons">
                             <button value="oneDay"onClick={this.switch}>1D</button>
                             <button value="oneMonth"onClick={this.switch}>1M</button>
@@ -285,7 +297,7 @@ class userHome extends React.Component {
                             </nav>
                             </section>
                             <section className="pie-charts">
-                              <PieCharts data1={this.formatPieChartData()}/>
+                              <PieCharts data1={this.state.pieChartData}/>
                             </section>
                         </div>
                       </div>

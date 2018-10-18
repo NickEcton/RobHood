@@ -4,7 +4,7 @@ import HomeForm from './home_form'
 import { withRouter } from 'react-router-dom'
 import { logout } from '../../actions/session_actions'
 import { receiveAsset, receivePortAssets, receiveAssetsPrices, receiveAllAssets } from '../../actions/asset_actions'
-import { receivePortfolio } from '../../actions/portfolio_actions'
+import { receivePortfolio, receiveAllSnapshots } from '../../actions/portfolio_actions'
 
 const mapStateToProps = (state) => {
 
@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
     asset: state.asset,
     portfolio: state.entities.portfolios[state.session.id],
     assetPrices: state.entities.portfolios.assetPrices,
-    allAssets: state.allAssets
+    allAssets: state.allAssets,
+    portAssets: state.entities.portfolios.portfolioAssets
   })
 }
 

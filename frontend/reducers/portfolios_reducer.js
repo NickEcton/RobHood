@@ -1,11 +1,11 @@
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions.js'
 import { CREATE_ORDER } from '../actions/order_actions.js'
-import { RECEIVE_PORTFOLIO} from '../actions/portfolio_actions'
+import { RECEIVE_PORTFOLIO, RECEIVE_ALL_SNAPSHOTS } from '../actions/portfolio_actions'
 import { RECEIVE_PORT_ASSETS, RECEIVE_ASSETS_PRICES } from '../actions/asset_actions'
 const portfoliosReducer = (oldState = {}, action) => {
 
   Object.freeze(oldState)
-
+  
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
       return Object.assign({}, oldState, {[action.currentUser.id]: action.currentUser.portfolio})
@@ -17,6 +17,8 @@ const portfoliosReducer = (oldState = {}, action) => {
       return Object.assign({}, oldState, {portfolioAssets: action.assets})
     case RECEIVE_ASSETS_PRICES:
       return Object.assign({}, oldState, {assetPrices : action.assets})
+    case RECEIVE_ALL_SNAPSHOTS:
+      return Object.assign({}, oldState, {snapshots: action.snapshots})
     default:
       return oldState
   }

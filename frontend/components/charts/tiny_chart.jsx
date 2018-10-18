@@ -10,7 +10,7 @@ class TinyChart extends React.Component {
 	render () {
   	return (
     	<LineChart width={60} height={16} data={this.props.data}>
-        <Line type='monotone' dataKey='high' stroke='#21ce99' strokeWidth={1} dot={false}/>
+        <Line type='monotone' dataKey='high' stroke='#21ce99' strokeWidth={1} type= {d3.curveCardinal.tension(1.0)} dot={false}/>
         <YAxis hide={true} type="number" domain={['dataMin', 'dataMax']}/>
       </LineChart>
     );

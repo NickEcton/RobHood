@@ -6,11 +6,15 @@ class Api::AssetsController < ApplicationController
   end
 
   def show
+
     asset_ids = params[:id].split(",").map(&:to_i)
     @assets = []
     asset_ids.each do |ass|
       @assets.push(Asset.find(ass).Symbol)
     end
+
+
+
     render json: @assets
   end
 

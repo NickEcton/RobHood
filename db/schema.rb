@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_15_003813) do
+ActiveRecord::Schema.define(version: 2018_10_17_160518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 2018_10_15_003813) do
     t.datetime "updated_at", null: false
     t.index ["asset_id"], name: "index_orders_on_asset_id"
     t.index ["portfolio_id"], name: "index_orders_on_portfolio_id"
+  end
+
+  create_table "portfolio_snapshots", force: :cascade do |t|
+    t.integer "portfolio_id", null: false
+    t.date "date", null: false
+    t.integer "value", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["portfolio_id"], name: "index_portfolio_snapshots_on_portfolio_id"
   end
 
   create_table "portfolios", force: :cascade do |t|

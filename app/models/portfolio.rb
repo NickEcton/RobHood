@@ -8,4 +8,8 @@ class Portfolio < ApplicationRecord
   has_many :orders,
   foreign_key: :portfolio_id,
   class_name: :Order
+
+  has_many :portfolio_snapshots,
+  foreign_key: :portfolio_id,
+  class_name: :PortfolioSnapshot
 end

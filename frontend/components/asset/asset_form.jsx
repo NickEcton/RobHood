@@ -17,23 +17,23 @@ class AssetForm extends React.Component {
   }
 
   componentDidMount() {
-    Promise.all([this.props.receiveClosingPrice(this.props.asset.stock.symbol),
-    this.props.receiveChartOneDay(this.props.asset.stock.symbol),
-    this.props.receiveChartOneMonth(this.props.asset.stock.symbol),
-    this.props.receiveChartThreeMonth(this.props.asset.stock.symbol),
-    this.props.receiveChartOneYear(this.props.asset.stock.symbol),
-    this.props.receiveChartFiveYear(this.props.asset.stock.symbol)]).then(()=>
+    Promise.all([this.props.receiveClosingPrice(this.props.asset.stock.company.symbol),
+    this.props.receiveChartOneDay(this.props.asset.stock.company.symbol),
+    this.props.receiveChartOneMonth(this.props.asset.stock.company.symbol),
+    this.props.receiveChartThreeMonth(this.props.asset.stock.company.symbol),
+    this.props.receiveChartOneYear(this.props.asset.stock.company.symbol),
+    this.props.receiveChartFiveYear(this.props.asset.stock.company.symbol)]).then(()=>
     this.setState( {data: this.props.charts.oneDay} ))
     this.props.receiveAllAssets();
   }
   componentDidUpdate(prevProps) {
-  if (this.props.asset.stock.symbol !== prevProps.asset.stock.symbol) {
-    Promise.all([this.props.receiveClosingPrice(this.props.asset.stock.symbol),
-    this.props.receiveChartOneDay(this.props.asset.stock.symbol),
-    this.props.receiveChartOneMonth(this.props.asset.stock.symbol),
-    this.props.receiveChartThreeMonth(this.props.asset.stock.symbol),
-    this.props.receiveChartOneYear(this.props.asset.stock.symbol),
-    this.props.receiveChartFiveYear(this.props.asset.stock.symbol)]).then(()=> this.setState( {data: this.props.charts.oneDay} ))
+  if (this.props.asset.stock.company.symbol !== prevProps.asset.stock.company.symbol) {
+    Promise.all([this.props.receiveClosingPrice(this.props.asset.stock.company.symbol),
+    this.props.receiveChartOneDay(this.props.asset.stock.company.symbol),
+    this.props.receiveChartOneMonth(this.props.asset.stock.company.symbol),
+    this.props.receiveChartThreeMonth(this.props.asset.stock.company.symbol),
+    this.props.receiveChartOneYear(this.props.asset.stock.company.symbol),
+    this.props.receiveChartFiveYear(this.props.asset.stock.company.symbol)]).then(()=> this.setState( {data: this.props.charts.oneDay} ))
   }
 
   if (this.props.allAssets) {
@@ -63,45 +63,26 @@ class AssetForm extends React.Component {
   }
 
   autoComplete(inp, arr) {
-
-    /*the autocomplete function takes two arguments,
-    the text field element and an array of possible autocompleted values:*/
     var currentFocus;
-    /*execute a function when someone writes in the text field:*/
     inp.addEventListener("input", function(e) {
         var a, b, i, val = this.value;
-        /*close any already open lists of autocompleted values*/
         closeAllLists();
         if (!val) { return false;}
         currentFocus = -1;
-        /*create a DIV element that will contain the items (values):*/
         a = document.createElement("DIV");
         a.setAttribute("id", this.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
-        /*append the DIV element as a child of the autocomplete container:*/
         this.parentNode.appendChild(a);
-        /*for each item in the array...*/
         for (i = 0; i < Object.keys(arr).length; i++) {
-          /*check if the item starts with the same letters as the text field value:*/
           if (arr[i].Symbol.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-            /*create a DIV element for each matching element:*/
-
             if (document.querySelectorAll(".autocomplete-items > div").length === 5) {
               break
             }
             b = document.createElement("DIV");
-            /*make the matching letters bold:*/
             b.innerHTML = "<strong>" + arr[i].Symbol.substr(0, val.length) + "</strong>";
             b.innerHTML += arr[i].Symbol.substr(val.length);
-            /*insert a input field that will hold the current array item's value:*/
             b.innerHTML += "<input type='hidden' value='" + arr[i].Symbol + "'>";
-            /*execute a function when someone clicks on the item value (DIV element):*/
                 b.addEventListener("click", function(e) {
-                /*insert the value for the autocomplete text field:*/
-                inp.value = this.getElementsByTagName("input")[0].value;
-                /*close the list of autocompleted values,
-                (or any other open lists of autocompleted values:*/
-                
                 document.querySelector("#myInput").value= e.target.children[1].value
                 closeAllLists();
                 document.querySelector("#hidden-submit").click()
@@ -110,50 +91,34 @@ class AssetForm extends React.Component {
           }
         }
     });
-    /*execute a function presses a key on the keyboard:*/
     inp.addEventListener("keydown", function(e) {
         var x = document.getElementById(this.id + "autocomplete-list");
         if (x) x = x.getElementsByTagName("div");
         if (e.keyCode == 40) {
-          /*If the arrow DOWN key is pressed,
-          increase the currentFocus variable:*/
           currentFocus++;
-          /*and and make the current item more visible:*/
           addActive(x);
-        } else if (e.keyCode == 38) { //up
-          /*If the arrow UP key is pressed,
-          decrease the currentFocus variable:*/
+        } else if (e.keyCode == 38) {
           currentFocus--;
-          /*and and make the current item more visible:*/
           addActive(x);
         } else if (e.keyCode == 13) {
-          /*If the ENTER key is pressed, prevent the form from being submitted,*/
-
           if (currentFocus > -1) {
-            /*and simulate a click on the "active" item:*/
             if (x) x[currentFocus].click();
           }
         }
     });
     function addActive(x) {
-      /*a function to classify an item as "active":*/
       if (!x) return false;
-      /*start by removing the "active" class on all items:*/
       removeActive(x);
       if (currentFocus >= x.length) currentFocus = 0;
       if (currentFocus < 0) currentFocus = (x.length - 1);
-      /*add class "autocomplete-active":*/
       x[currentFocus].classList.add("autocomplete-active");
     }
     function removeActive(x) {
-      /*a function to remove the "active" class from all autocomplete items:*/
       for (var i = 0; i < x.length; i++) {
         x[i].classList.remove("autocomplete-active");
       }
     }
     function closeAllLists(elmnt) {
-      /*close all autocomplete lists in the document,
-      except the one passed as an argument:*/
       var x = document.getElementsByClassName("autocomplete-items");
       for (var i = 0; i < x.length; i++) {
         if (elmnt != x[i] && elmnt != inp) {
@@ -161,7 +126,7 @@ class AssetForm extends React.Component {
       }
     }
   }
-  /*execute a function when someone clicks in the document:*/
+
   document.addEventListener("click", function (e) {
       closeAllLists(e.target);
   });
@@ -232,21 +197,24 @@ class AssetForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    e.persist()
-    this.props.receiveAsset(e.target.children[0].children[0].value).then(() =>
-    this.props.history.push(`/assets/${e.target.children[0].children[0].value}`))
+    this.setState({asset: e.target.children[0].children[0].value}, () =>{
+      e.persist()
+      this.props.receiveAsset(this.state.asset).then(() =>
+      this.props.history.push(`/assets/${this.state.asset}`))
+    })
+
   }
 
   handleOrderSubmit(e) {
     e.preventDefault();
 
-    this.props.createOrder({"asset_symbol": this.props.asset.stock.symbol, "portfolio_id": this.props.portfolio.id, "price": this.props.asset.closing, "quantity": this.state.quantity}).then(()=> this.props.history.push(`/whatever`))
+    this.props.createOrder({"asset_symbol": this.props.asset.stock.company.symbol, "portfolio_id": this.props.portfolio.id, "price": this.props.asset.closing, "quantity": this.state.quantity}).then(()=> this.props.history.push(`/whatever`))
 
   }
 
   render() {
 
- if (!this.state.data) {
+ if (!this.state.data || !this.props.asset.stock.news) {
    return (
    <div className="loader-cont">
          <Loader type="spinningBubbles" color="#21ce99" />
@@ -294,14 +262,14 @@ class AssetForm extends React.Component {
               <div className="before-main-container">
                 <div className="main-container">
                   <div className="tag-line">
-                    {this.props.asset.stock.tags.map(function(tag, index){
+                    {this.props.asset.stock.company.tags.map(function(tag, index){
                       return <div className="tags" key={index}><a className="tag-link">{tag}</a></div>;
                     })}
                   </div>
                   <div className="head-row">
                     <div className="graph-cont">
                       <header className="asset-header">
-                        <h1>{this.props.asset.stock.companyName}</h1>
+                        <h1>{this.props.asset.stock.company.companyName}</h1>
                       </header>
                       <div className="qwe">
                         <section className="graph-begin">
@@ -331,7 +299,7 @@ class AssetForm extends React.Component {
                             </div></header>
                           <div className="about-description-cont">
                           <h3 className="about-description">
-                          {this.props.asset.stock.description + " "}
+                          {this.props.asset.stock.company.description + " "}
                           <span><a> Read More</a></span>
                           </h3>
                           </div>
@@ -341,7 +309,7 @@ class AssetForm extends React.Component {
                             Symbol
                             </div>
                             <div className="about-grid-item-object">
-                              {this.props.asset.stock.symbol}
+                              {this.props.asset.stock.company.symbol}
                             </div>
                             </div>
                             <div className="about-grid-item">
@@ -349,7 +317,7 @@ class AssetForm extends React.Component {
                             Company
                             </div>
                             <div className="about-grid-item-object">
-                              {this.props.asset.stock.companyName}
+                              {this.props.asset.stock.company.companyName}
                             </div>
                             </div>
                             <div className="about-grid-item">
@@ -357,7 +325,7 @@ class AssetForm extends React.Component {
                             CEO
                             </div>
                             <div className="about-grid-item-object">
-                              {this.props.asset.stock.CEO}
+                              {this.props.asset.stock.company.CEO}
                             </div>
                             </div>
                             <div className="about-grid-item">
@@ -365,7 +333,7 @@ class AssetForm extends React.Component {
                             Industry
                             </div>
                             <div className="about-grid-item-object">
-                              {this.props.asset.stock.industry}
+                              {this.props.asset.stock.company.industry}
                             </div>
                             </div>
                             <div className="about-grid-item">
@@ -373,7 +341,7 @@ class AssetForm extends React.Component {
                             Sector
                             </div>
                             <div className="about-grid-item-object">
-                              {this.props.asset.stock.sector}
+                              {this.props.asset.stock.company.sector}
                             </div>
                             </div>
                             <div className="about-grid-item">
@@ -381,7 +349,7 @@ class AssetForm extends React.Component {
                             Exchange
                             </div>
                             <div className="about-grid-item-object">
-                              {this.props.asset.stock.exchange}
+                              {this.props.asset.stock.company.exchange}
                             </div>
                             </div>
                             <div className="about-grid-item">
@@ -389,7 +357,7 @@ class AssetForm extends React.Component {
                             IssueType
                             </div>
                             <div className="about-grid-item-object">
-                              {this.props.asset.stock.issueType}
+                              {this.props.asset.stock.company.issueType}
                             </div>
                             </div>
                           </div></section>
@@ -400,10 +368,39 @@ class AssetForm extends React.Component {
                             </div>
                           </header>
                             <div className="collections-item-cont">
-                            {this.props.asset.stock.tags.map(function(tag, index){
+                            {this.props.asset.stock.company.tags.map(function(tag, index){
                               return <div className="collections-item" key={index}><a className="tag-link">{tag}</a></div>;
                             })}
                             </div>
+                        </section>
+                        <section className="news">
+                          <header className= "news-header-cont">
+                            <div className="the-news-header-content">
+                            <h2 style={{margin: '0'}}>News</h2>
+                            <a>Show More</a>
+                            </div>
+                          </header>
+                          <div>
+                          {this.props.asset.stock.news.map(function(article, index){
+                            return (
+                            <div className="news-padding-provider">
+                              <div className="news-flex-provider">
+                                <div style={{backgroundImage: `url(https://image.shutterstock.com/image-vector/white-feather-vector-silhouette-illustration-260nw-744679321.jpg)`}} className="news-left-image"></div>
+                                  <div className="news-content-container">
+                                    <div className="news-source-cont">
+                                      <span>{article.source}</span>
+
+                                    </div>
+                                    <div className="news-description-cont">
+                                      <h3>{article.headline}</h3>
+                                    </div>
+                                  </div>
+
+                                </div>
+                                <a className= "rand-a" href={article.url}></a>
+                              </div>);
+                          })}
+                          </div>
                         </section>
                       </div>
                     </div>
@@ -412,7 +409,7 @@ class AssetForm extends React.Component {
                         <form onSubmit={this.handleOrderSubmit}className="take-order">
                           <header className="order-header">
                             <div className="order-head-cont">
-                            <span>Buy {this.props.asset.stock.symbol}</span>
+                            <span>Buy {this.props.asset.stock.company.symbol}</span>
                             </div></header>
                           <div>
                             <div className="order-asset-detail">

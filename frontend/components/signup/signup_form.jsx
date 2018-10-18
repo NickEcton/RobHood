@@ -45,7 +45,9 @@ class SignupForm extends React.Component {
     }
 
     renderErrors() {
-      console.log(this.props.errors)
+      if (this.props.errors.length === 0) {
+        return (<div></div>)
+      } else {
       return(
         <ul>
           {this.props.errors.map((error, i) => (
@@ -56,6 +58,7 @@ class SignupForm extends React.Component {
         </ul>
       );
     }
+  }
 
     render () {
       return (
