@@ -32,8 +32,12 @@ class LoginForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    if (e.target.classList[0] === "we") {
+      this.props.history.push("/signup")
+    } else {
     const user = Object.assign({}, this.state)
     this.props.processform(user);
+    }
   }
 
 
@@ -93,7 +97,9 @@ class LoginForm extends React.Component {
             <div className="buttons">
               <button className="login-submit" type="submit">Sign In</button>
               <button className="login-submit" onClick={this.demoSubmit}>Demo</button>
-              <button className="login-submit"><a href="#/signup">Sign Up</a></button>
+              <form className="we">
+              <button type="input" className="login-submit"><a href="#/signup">Sign Up</a></button>
+              </form>
             </div>
           </footer>
           </form>

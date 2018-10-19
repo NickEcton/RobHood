@@ -55,6 +55,7 @@
   text-align: center;
   width: 100%;
   display: flex;
+  justify-content: center;
 }
 
 .table {
@@ -64,6 +65,9 @@
   text-align: left;
 }
 
+.table h1 {
+  text-align: center;
+}
 
 .this-form {
   display: flex;
@@ -123,6 +127,7 @@ input {
   font-family: inherit;
   text-decoration: none;
   color: white;
+  width: 92.5%
 }
 
 .application-finish-link {
