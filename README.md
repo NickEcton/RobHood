@@ -27,3 +27,8 @@ Upon log in, the user is directed to their home page. Here they can see the hist
 
 
 <img src="https://github.com/NickEcton/RobHood/blob/master/UserHomePageGif.gif" width="100%" height="10%" />
+
+### Asset Show Page
+After searching a stock, this page will show all releveant information, including histroical price, current company ownership, and types of stock available. Users are able to toggle the view mode from open-market to clsoed-market hours, mimicking the functionality of the real Robinhood site. Users are able to facilitate trades on this page, and on successful trade the user will be redirected to their home page and shown an updated version of the portfolio.
+
+<img src="https://github.com/NickEcton/RobHood/blob/master/AssetShowPageGif.gif" width="100%" height="10%" />
