@@ -24,4 +24,4 @@ Rob-Hood, a Robinhood clone, combines real-time stock and crypto-currency data w
 
 ### Dashboard and Portfolio
 
-[Gif of Portfolio Functionality](https://raw.githubusercontent.com/NickEcton/RobHood/master/HomePageMovie.mp4.gif)
+<img src="https://raw.githubusercontent.com/NickEcton/RobHood/master/HomePageMovie.mp4.gif" width="100%" height="10%" />
