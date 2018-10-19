@@ -33,10 +33,7 @@ class LoginForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state)
-    this.props.processform(user).then((res)=>{
-      console.log(res)
-    let bod = document.querySelector("body")
-    bod.style.backgroundColor = "#1b1b1d"});
+    this.props.processform(user);
   }
 
 

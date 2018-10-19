@@ -1,6 +1,7 @@
 import React from 'react'
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
-import CustomToolTip from './custom_tool_tip.jsx'
+import CustomToolTip from './custom_tool_tip_user.jsx'
+
 
 class TinyLineChart extends React.Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class TinyLineChart extends React.Component {
        <XAxis dataKey="label" hide={true} tickLine={false}/>
        <YAxis hide={true} type="number" domain={['dataMin - 1', 'dataMax']}/>
        <Line dot={false} type="monotone" dataKey="value" stroke="#21ce99" type= {d3.curveCardinal.tension(0.8)}/>
-       <Tooltip isAnimationActive={false}  offset={-24} content={< CustomToolTip openPrice={this.openPrice()} priceFlux={this.priceFlux()} priceFluxPercent={this.priceFluxPercent()} price={this.price()} neg={this.neg()} /> } position={{y: -15}}/>
+       <Tooltip isAnimationActive={false}  offset={-24} content={< CustomToolTip openPrice={this.openPrice()} priceFlux={this.priceFlux()} priceFluxPercent={this.priceFluxPercent()} price={this.price()} neg={this.neg()} let type={"value"}/> } position={{y: -15}}/>
       </LineChart>
     );
   }

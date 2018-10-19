@@ -22,6 +22,7 @@ body {
   height: 100%;
   font-family: Niramit;
   margin: 0;
+  border-color: rgb(244, 244, 245)
 }
 
 #root {
@@ -30,8 +31,4 @@ body {
 
 #root>div {
   height: 100%
-}
-
-.test {
-  background-color: pink;
 }

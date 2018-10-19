@@ -15,7 +15,7 @@ class CustomToolTip extends React.Component {
     let type = this.props.type
     if (this.props.active && nextProps.payload[0]) {
 
-      let priceFluxCalc = nextProps.payload[0].payload.close - this.props.openPrice;
+      let priceFluxCalc = nextProps.payload[0].payload.value - this.props.openPrice;
       let priceFluxPercentCalc = (priceFluxCalc * 100/this.props.openPrice);
       if (priceFluxCalc < 0) { neg = "-" ;}
       let priceFluxString = `${neg}$${Math.abs(priceFluxCalc).formatMoney(2)} (${priceFluxPercentCalc.formatMoney(2)}%)`

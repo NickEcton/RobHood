@@ -50,8 +50,6 @@
 
 .port-sidebar-contain {
   box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(0, 0, 0, 0.6);
-  background: #1b1b1d;
-  border-color: #0e0d0d;
   overflow: hidden;
   padding-top: 0;
   position: relative;
@@ -75,7 +73,7 @@
 
 .port-side-header {
   border-bottom: 1px solid;
-  border-color: #0e0d0d;
+  border-color: #f4f4f5;
   margin-bottom: 0;
 }
 
@@ -83,15 +81,17 @@
   margin: 0;
   align-items: center;
   border-bottom: 1px solid;
-  border-color: #0e0d0d;
+  border-color: #f4f4f5;
   display: flex;
   height: 52px;
   justify-content: space-between;
   padding: 4px 24px 0;
 }
 
+.crypto-cont {
+}
+
 .port-side-header a {
-  color: white;
   font-weight: 500;
   cursor: pointer;
   text-decoration: none;
@@ -103,13 +103,10 @@
 }
 
 .port-side-portfolio {
-  border-bottom: 1px solid;
-  border-color: #0e0d0d;
   margin-bottom: 0;
 }
 
 .port-side-portfolio a {
-  color: white;
   font-weight: 500;
   cursor: pointer;
   text-decoration: none;
@@ -179,7 +176,7 @@ box-sizing: inherit;
 .the-user-news-header-content {
   width: 675px;
   border-bottom: 1px solid;
-  border-color: #0e0d0d;
+  border-color: #f4f4f5;
   padding-bottom: 16px;
   align-items: baseline;
   display: flex;

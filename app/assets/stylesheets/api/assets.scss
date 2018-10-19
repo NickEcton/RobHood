@@ -37,12 +37,12 @@ div {
 }
 
 .asset-search-bar {
-  background: #1b1b1d;
   height: 64px;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 100;
+  background: rgba(255, 255, 255, 1)
 }
 
 .asset-search-row {
@@ -50,6 +50,7 @@ div {
   justify-content: space-between;
   margin: 0 -6px;
 }
+
 
 .logo-and-search {
   align-items: center;
@@ -69,10 +70,20 @@ div {
 }
 
 .asset-hood-logo svg {
-  color: #fff;
+  color: #21ce99;
+  fill: currentColor;
   transition: color 300ms ease-out;
   overflow: visible;
-  fill: currentColor;
+  -webkit-transition: color 300ms ease-out;
+}
+
+.asset-hood-logo svg:hover {
+  fill:  #21ce99;
+  transition: 700ms;
+}
+
+.black-border {
+  border: 1px solid #0e0d0d;
 }
 
 .navLogoStar {
@@ -90,17 +101,14 @@ div {
 }
 
 .asset-search-border {
-  background: #1b1b1d;
   border: 1px solid;
-  border-color: #0e0d0d;
+  border-color: #f4f4f5;
   border-radius: 4px;
   position: absolute;
   width: 100%;
 }
 
 .asset-search-control {
-  background: #1b1b1d;
-  color: #fff;
   border: none;
   cursor: text;
   height: 36px;
@@ -214,14 +222,14 @@ div {
   flex: 0 0 auto;
   margin: 0 12px 12px 0;
   height: 100%;
-
 }
+
 
 .tag-link {
   color: #21ce99;
   fill: #21ce99;
   cursor: pointer;
-  background: #182b27;
+  background: rgb(244, 244, 245);
   box-align: center;
   align-items: center;
   border-radius: 17px;
@@ -287,7 +295,8 @@ margin: 0;
 .graph-buttons {
   margin: 24px 0 12px;
   display: flex;
-  border-bottom: 1px solid #0e0d0d;
+  border-bottom: 1px solid;
+  border-color: #f4f4f5;
 }
 
 .graph-buttons button {
@@ -327,8 +336,8 @@ margin: 0;
 }
 
 .about-border {
-  border-color: #0e0d0d;
-  border-bottom: 1px solid #0e0d0d;
+  border-bottom: 1px solid;
+  border-color: #f4f4f5;
   padding-bottom: 16px;
   box-align: baseline;
   align-items: baseline;
@@ -404,7 +413,8 @@ margin: 0;
 }
 
 .collections-header-title {
-  border-bottom: 1px solid #0e0d0d;
+  border-bottom: 1px solid;
+  border-color: #f4f4f5;
   padding-bottom: 16px;
   box-align: baseline;
   align-items: baseline;
@@ -441,7 +451,7 @@ margin: 0;
 
 .the-news-header-content {
   border-bottom: 1px solid;
-  border-color: #0e0d0d;
+  border-color: #f4f4f5;
   padding-bottom: 16px;
   align-items: baseline;
   display: flex;
@@ -527,7 +537,6 @@ margin: 0;
 
 .take-order {
   box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(0, 0, 0, 0.6);
-  background: #1b1b1d;
   padding: 0 24px;
   position: relative;
   border: none;
@@ -537,7 +546,8 @@ margin: 0;
 
 .order-header {
   align-items: center;
-  border-bottom: 1px solid #0e0d0d;
+  border-bottom: 1px solid;
+  border-color: #f4f4f5;
   display: flex;
   height: 52px;
   justify-content: space-between;
@@ -568,10 +578,10 @@ margin: 0;
   white-space: nowrap;
 }
 
-.order-shares-detail input {
-  background: #171718;
-  border-color: #171718;
-  color: #fff;
+.order-shares-input {
+  background: rgb(250 ,250 ,250);
+  border-color: rgb(250 ,250 ,250);
+  color: rgb(255 ,255 ,255);
   width: 54px;
   text-align: right;
   padding: 0 13px;
@@ -610,7 +620,7 @@ margin: 0;
 .order-cost {
   font-weight: 500;
   border-top: 1px solid;
-  border-color: #0e0d0d;
+  border-color: #f4f4f5;
   padding-right: 12px;
 }
 
@@ -660,7 +670,6 @@ min-height: 48px;
 }
 
 .review-button-cont {
-  background: #1b1b1d;
   border-top: 1px solid transparent;
   transition: border-color 250ms;
   margin: 0 -24px 0;
@@ -668,11 +677,11 @@ min-height: 48px;
 }
 
 .review-button {
+  color: white;
   padding-right: 66px;
 }
 
 .review-button-btn {
-  color: #1b1b1d;
   background: #21ce99;
   border-color: #21ce99;
   width: 100%;
@@ -699,7 +708,7 @@ min-height: 48px;
   margin: 0 -24px 0;
   align-items: center;
   border-top: 1px solid;
-  border-color: #0e0d0d;
+  border-color: #f4f4f5;
   display: flex;
   height: 48px;
   justify-content: center;
