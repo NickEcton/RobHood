@@ -18,7 +18,6 @@ class AssetForm extends React.Component {
   }
 
   componentDidMount() {
-
     this.props.receiveAsset(this.props.match.params.symbol).then(()=>
     Promise.all([this.props.receiveClosingPrice(this.props.asset.stock.company.symbol),
     this.props.receiveChartOneDay(this.props.asset.stock.company.symbol),
@@ -32,6 +31,9 @@ class AssetForm extends React.Component {
   componentDidUpdate(prevProps) {
 
   if (this.props.match.params.symbol !== prevProps.match.params.symbol) {
+    if (document.querySelector("body").classList.contains("market-closed")) {
+      document.querySelector("body").classList.toggle("market-closed")
+    }
     Promise.all([this.props.receiveClosingPrice(this.props.asset.stock.company.symbol),  this.props.receiveNews(this.props.asset.stock.company.companyName),
     this.props.receiveChartOneDay(this.props.asset.stock.company.symbol),
     this.props.receiveChartOneMonth(this.props.asset.stock.company.symbol),
@@ -44,6 +46,12 @@ class AssetForm extends React.Component {
     this.autoComplete(inp, this.props.allAssets)
   }
 }
+
+  componentWillUnmount() {
+    if (document.querySelector("body").classList.contains("market-closed")) {
+      document.querySelector("body").classList.toggle("market-closed")
+    }
+  }
 
   switch(e) {
 

@@ -43,6 +43,12 @@ class userHome extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    if (document.querySelector("body").classList.contains("market-closed")) {
+      document.querySelector("body").classList.toggle("market-closed")
+    }
+  }
+
   autoComplete(inp, arr, that) {
 
     var currentFocus;
@@ -144,18 +150,21 @@ class userHome extends React.Component {
       let portItems = []
       let myHash = {}
       if (!this.props.payload.portfolio.orders) {
-        return
+        return 0
       } else {
-      this.props.payload.portfolio.orders.forEach((el) => {
-        myHash[el.asset_id] = myHash[el.asset_id] || 0
-        myHash[el.asset_id] += el.quantity
-        console.log(myHash)
-      })
-      portItems = Object.keys(myHash)
-        return portItems
+        if (this.props.payload.portfolio.orders.length === 0) {
+          return 1
+        } else {
+          this.props.payload.portfolio.orders.forEach((el) => {
+            myHash[el.asset_id] = myHash[el.asset_id] || 0
+            myHash[el.asset_id] += el.quantity
+            console.log(myHash)
+          })
+          portItems = Object.keys(myHash)
+          return portItems
+        }
        }
      }
-
       formatPieChartData() {
 
         let pieChartDatas = []
@@ -216,6 +225,21 @@ class userHome extends React.Component {
     this.props.payload.history.push(`/assets/${s}`))
   }
 
+  graphPrice() {
+    if (this.state.data.length === 0){
+      return 0
+    } else {
+      return this.state.data[this.state.data.length - 1].value
+    }
+  }
+
+  movement() {
+    if (this.state.data.length === 0) {
+      return 0
+    } else {
+      return (this.state.data[this.state.data.length - 1].value - this.state.data[0].value)
+    }
+  }
 
   switch(e) {
     let range = this.props.payload.portfolio.portfolio_snapshots
@@ -231,25 +255,25 @@ class userHome extends React.Component {
       this.setState( { data: range})
     }
   }
-
-
+  // if (this.props.payload.portfolio.orders.length === 0 && this.props.payload.asset.cryptos && this.props.payload.asset.news) {
+  //
+  // } else if (!this.state.pieChartData || !this.props.payload.asset.cryptos|| !this.props.payload.asset.news || !this.state.data)  {
+  //   return (
+  //     <div className="loader-cont">
+  //           <Loader type="spinningBubbles" color="#21ce99" />
+  //     </div>
+  //   )
+  // }
+  //
 
   render() {
-    if (!this.props.payload.portfolio.orders) {
+    if (!this.props.payload.portfolio || !this.props.payload.asset.cryptos || !this.props.payload.asset.news || !this.state.pieChartData || !this.state.data) {
       return (
         <div className="loader-cont">
               <Loader type="spinningBubbles" color="#21ce99" />
         </div>
       )
-    } else if (this.props.payload.portfolio.orders.length === 0 && this.props.payload.asset.cryptos && this.props.payload.asset.news) {
-
-    } else if (!this.state.pieChartData || !this.props.payload.asset.cryptos|| !this.props.payload.asset.news || !this.state.data)  {
-      return (
-        <div className="loader-cont">
-              <Loader type="spinningBubbles" color="#21ce99" />
-        </div>
-      )
-    }
+    } else {
 
       return (
         <div className="user-show-main">
@@ -298,10 +322,10 @@ class userHome extends React.Component {
                           <section className="graph-begin">
                             <header className="graph-header">
                               <h1 className="graph-asset-price">
-                              ${this.state.data[this.state.data.length - 1].value}
+                              ${this.graphPrice()}
                               </h1>
                               <div className="today-movement">
-                              {(this.state.data[this.state.data.length - 1].value - this.state.data[0].value)}%
+                              {this.movement()}%
                               </div>
                             </header>
                             <div className="graph">< UserChart data={this.state.data}/></div>
@@ -388,7 +412,7 @@ class userHome extends React.Component {
       )
     }
   }
-
+}
 
 
 export default withRouter(userHome)

@@ -44,7 +44,7 @@ class CustomToolTip extends React.Component {
       if (payload && payload[0] && payload[0].payload) {
         return (
           <div className="custom-tooltip">
-            {payload[0].payload.label}
+            {payload[0].payload.date}
           </div>
         );
       }

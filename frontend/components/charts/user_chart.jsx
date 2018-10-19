@@ -11,6 +11,7 @@ class TinyLineChart extends React.Component {
 
 
   openPrice(){
+
     return this.props.data[0].value
   }
 
@@ -40,6 +41,14 @@ class TinyLineChart extends React.Component {
   }
 
   render () {
+
+    if (this.props.data.length === 0) {
+      return (
+        <LineChart width={676} height={196} data={[0]}
+        margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+        </LineChart>
+      )
+    }
 
   	return (
     	<LineChart width={676} height={196} data={this.props.data}

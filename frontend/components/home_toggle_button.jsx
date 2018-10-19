@@ -10,7 +10,7 @@ class toggleButton extends React.Component {
   toggle() {
     document.querySelector("body").classList.toggle("market-closed")
     document.querySelector(".asset-search-border").classList.toggle("market-closed")
-    document.querySelector(".asset-show-main").classList.toggle("market-closed")
+    document.querySelector(".user-show-main").classList.toggle("market-closed")
     document.querySelector(".port-sidebar-contain").classList.toggle("market-closed")
     document.querySelector(".crypto-cont").classList.toggle("market-closed")
 
