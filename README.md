@@ -24,4 +24,6 @@ Rob-Hood, a Robinhood clone, combines real-time stock and crypto-currency data w
 
 ### Dashboard and Portfolio
 Upon log in, the user is directed to their home page. Here they can see the historical performance of their portfolio, as well as the current asset struture and up-to-the-minute performance of each stock they own.
+
+
 <img src="https://github.com/NickEcton/RobHood/blob/master/UserHomePageGif.gif" width="100%" height="10%" />
