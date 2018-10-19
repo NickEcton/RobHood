@@ -21,3 +21,7 @@ Rob-Hood, a Robinhood clone, combines real-time stock and crypto-currency data w
 + Helpful and interactive graphs to display all historical and relevant information elegantly
 + Ability to facilitate faux trades in the market, using up-to-the-minute pricing
 + Helpful display of all relevant news articles displayed on each asset's page and general information displayed on home
+
+### Dashboard and Portfolio
+
+(https://raw.githubusercontent.com/NickEcton/RobHood/master/HomePageMovie.mp4.gif)
