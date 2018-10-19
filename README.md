@@ -1,24 +1,6 @@
-# README
+# Rob-Hood
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rob-Hood, a Robinhood clone, combines real-time stock and crypto-currency data with portfolio building functionality to give users the full stock-trading experience.
 
-Things you may want to cover:
+[RobHood Heroku](https://rob-hood.herokuapp.com/#/)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
