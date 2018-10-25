@@ -70,7 +70,7 @@ class toggleButton extends React.Component {
   render() {
     return (
     <div>
-      <button onClick={this.toggle}>Toggle NightMode</button>
+      <button className="toggle-home-btn" onClick={this.toggle}> NightMode</button>
     </div>
   )
   }

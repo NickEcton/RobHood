@@ -22,10 +22,12 @@ class toggleButton extends React.Component {
     let nav = document.querySelector(".asset-search-bar")
     let svg = document.querySelector(".smol-svg")
     let userNews = document.querySelector(".the-user-news-header-content")
+    let toggleBtn = document.querySelector(".autocomplete-items")
 
     this.change(svg, 'color', 'rgb(255, 255, 255)', 'rgb(33, 206, 153)')
     this.change(nav, 'background', 'rgb(27, 27, 29)', 'rgba(255, 255, 255, 1)')
-
+    this.change(toggleBtn, 'background', "white", "black")
+    this.change(toggleBtn, 'color', "black", "white")
     portH3.forEach((el)=>{
       this.changeBorder(el)
     })
@@ -57,7 +59,7 @@ class toggleButton extends React.Component {
   render() {
     return (
     <div>
-      <button onClick={this.toggle}>Toggle NightMode</button>
+      <button className="toggle-home-btn" onClick={this.toggle}> NightMode</button>
     </div>
   )
   }

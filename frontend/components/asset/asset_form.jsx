@@ -261,7 +261,7 @@ class AssetForm extends React.Component {
               <div className="navLinkContainer">
                 <a href="/#"><div className="homeLink">Home</div></a>
                 <div className="notifications">< ToggleButton /></div>
-                <Link to="/"><button onClick={this.logThemOut}>Logout!</button></Link>
+                <Link to="/"><button className="toggle-home-btn" onClick={this.logThemOut}>Logout!</button></Link>
               </div>
             </div>
           </div>
