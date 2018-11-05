@@ -62,11 +62,11 @@ class userHome extends React.Component {
         a.setAttribute("class", "autocomplete-items");
         this.parentNode.appendChild(a);
         for (i = 0; i < Object.keys(arr).length; i++) {
+          if (document.querySelectorAll(".autocomplete-items > div").length === 5) {
+            break
+          }
           if (arr[i].Symbol.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
 
-            if (document.querySelectorAll(".autocomplete-items > div").length === 5) {
-              break
-            }
             b = document.createElement("DIV");
             b.innerHTML = "<strong>" + arr[i].Symbol.substr(0, val.length) + "</strong>";
             b.innerHTML += arr[i].Symbol.substr(val.length);
