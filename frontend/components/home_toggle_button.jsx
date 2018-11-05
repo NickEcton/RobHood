@@ -22,12 +22,15 @@ class toggleButton extends React.Component {
     let nav = document.querySelector(".asset-search-bar")
     let svg = document.querySelector(".smol-svg")
     let userNews = document.querySelector(".the-user-news-header-content")
-    let toggleBtn = document.querySelector(".autocomplete-items")
+    let dropdown = document.querySelector(".autocomplete")
+    let inputText = document.querySelector("#myInput")
 
-    this.change(svg, 'color', 'rgb(255, 255, 255)', 'rgb(33, 206, 153)')
-    this.change(nav, 'background', 'rgb(27, 27, 29)', 'rgba(255, 255, 255, 1)')
-    this.change(toggleBtn, 'background', "white", "black")
-    this.change(toggleBtn, 'color', "black", "white")
+    this.change(svg, 'color', 'rgb(255, 255, 255)', 'rgb(33, 206, 153)');
+    this.change(nav, 'background', 'rgb(27, 27, 29)', 'rgba(255, 255, 255, 1)');
+    this.change(dropdown, 'background', "rgb(27, 27, 29)", "rgba(255, 255, 255, 1)");
+    this.change(dropdown, 'color', "white", "black");
+    this.changeBorder(dropdown);
+    this.change(inputText, 'color', "white", "black");
     portH3.forEach((el)=>{
       this.changeBorder(el)
     })
@@ -37,10 +40,6 @@ class toggleButton extends React.Component {
     this.changeBorder(graphButtons)
     this.changeBorder(portHeader)
     this.changeBorder(userNews)
-
-
-
-
 
   }
 
@@ -53,6 +52,7 @@ class toggleButton extends React.Component {
   }
 
   change(el, prop, color1, color2) {
+    
     el.style[prop] = el.style[prop] === color1 ? color2 : color1;
   }
 
