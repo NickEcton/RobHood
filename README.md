@@ -1,24 +1,34 @@
-# README
+# Rob-Hood
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rob-Hood, a Robinhood clone, combines real-time stock and crypto-currency data with portfolio building functionality to give users the full stock-trading experience.
 
-Things you may want to cover:
+[RobHood Demo](https://rob-hood.herokuapp.com/#/)
 
-* Ruby version
+## Technologies
 
-* System dependencies
++ Backend: Rails/ActiveRecord/PostgreSQL
++ Frontend: React/Redux
++ [IEX API](https://iextrading.com/developer/docs/)
++ [News API](https://newsapi.org/docs)
++ [Recharts](http://recharts.org/en-US/)
++ [CSS Animate](https://daneden.github.io/animate.css/)
 
-* Configuration
+## Features 
 
-* Database creation
++ Secure fronted to backend user creation utilizing BCrypt
++ Real-time and historical price data for all stocks and cryptocurrencies traded on the NASDAQ and NYSE exchanges
++ Real-time and historical portfolio tracking data for the individual user
++ Helpful and interactive graphs to display all historical and relevant information elegantly
++ Ability to facilitate faux trades in the market, using up-to-the-minute pricing
++ Helpful display of all relevant news articles displayed on each asset's page and general information displayed on home
 
-* Database initialization
+### Dashboard and Portfolio
+Upon log in, the user is directed to their home page. Here they can see the historical performance of their portfolio, as well as the current asset struture and up-to-the-minute performance of each stock they own.
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+<img src="https://github.com/NickEcton/RobHood/blob/master/UserHomePageGif.gif" width="100%" height="10%" />
 
-* Deployment instructions
+### Asset Show Page
+After searching a stock, this page will show all releveant information, including histroical price, current company ownership, and types of stock available. Users are able to toggle the view mode from open-market to clsoed-market hours, mimicking the functionality of the real Robinhood site. Users are able to facilitate trades on this page, and on successful trade the user will be redirected to their home page and shown an updated version of the portfolio.
 
-* ...
+<img src="https://github.com/NickEcton/RobHood/blob/master/AssetShowPage2.gif" width="100%" height="10%" />
