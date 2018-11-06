@@ -31,15 +31,14 @@ class userHome extends React.Component {
     this.props.payload.receiveNews('stocks')])})
     .then(()=>{
       this.setState({ data: this.props.payload.portfolio.portfolio_snapshots, pieChartData: this.formatPieChartData() })
-    }) // some coding error in handling happened
+    })
   }
 
 
   componentDidUpdate(prevProps) {
-    let that = this
-        let inp = document.querySelector("#myInput")
+    let inp = document.querySelector("#myInput")
     if (inp) {
-      this.autoComplete(inp, this.props.payload.asset.allAssets)
+      this.autoComplete(inp, this.formatAllAssets(this.props.payload.asset.allAssets));
     }
   }
 
@@ -49,10 +48,26 @@ class userHome extends React.Component {
     }
   }
 
-  autoComplete(inp, arr, that) {
+  formatAllAssets(array) {
+    let result = {} 
+    array.forEach((el) => {
+      let letter = el.Symbol[0].toUpperCase()
+      
+      if (result[letter]) {
+        result[letter].push(el)
+      } else {
+        result[letter] = []
+        result[letter].push(el) 
+      }
+    })
+    
+    return result 
+  }
+
+  autoComplete(inp, arr) {
 
     var currentFocus;
-    inp.addEventListener("input", function(e, that) {
+    inp.addEventListener("input", function(e) {
         var a, b, i, val = this.value;
         closeAllLists();
         if (!val) { return false;}
@@ -61,16 +76,17 @@ class userHome extends React.Component {
         a.setAttribute("id", this.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
         this.parentNode.appendChild(a);
-        for (i = 0; i < Object.keys(arr).length; i++) {
+        let syms = arr[val[0].toUpperCase()]
+        for (i = 0; i < syms.length; i++) {
           if (document.querySelectorAll(".autocomplete-items > div").length === 5) {
             break
           }
-          if (arr[i].Symbol.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          if (syms[i].Symbol.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
 
             b = document.createElement("DIV");
-            b.innerHTML = "<strong>" + arr[i].Symbol.substr(0, val.length) + "</strong>";
-            b.innerHTML += arr[i].Symbol.substr(val.length);
-            b.innerHTML += "<input type='hidden' value='" + arr[i].Symbol + "'>";
+            b.innerHTML = "<strong>" + syms[i].Symbol.substr(0, val.length) + "</strong>";
+            b.innerHTML += syms[i].Symbol.substr(val.length);
+            b.innerHTML += "<input type='hidden' value='" + syms[i].Symbol + "'>";
                 b.addEventListener("click", function(e) {
                 closeAllLists();
                 document.querySelector("#myInput").value= e.target.children[1].value
