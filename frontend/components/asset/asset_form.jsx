@@ -39,11 +39,12 @@ class AssetForm extends React.Component {
     this.props.receiveChartOneMonth(this.props.asset.stock.company.symbol),
     this.props.receiveChartThreeMonth(this.props.asset.stock.company.symbol),
     this.props.receiveChartOneYear(this.props.asset.stock.company.symbol),
-    this.props.receiveChartFiveYear(this.props.asset.stock.company.symbol)]).then(()=>this.props.receiveNews(this.props.asset.stock.company.companyName.split(" ")[0])).then(()=> this.setState( {data: this.props.charts.oneDay} ))
+    this.props.receiveChartFiveYear(this.props.asset.stock.company.symbol)])
+    this.props.receiveAllAssets().then(()=>this.props.receiveNews(this.props.asset.stock.company.companyName.split(" ")[0])).then(()=> this.setState( {data: this.props.charts.oneDay} ))
   }
     let inp = document.querySelector("#myInput")
   if (inp) {
-    debugger
+    
     this.autoComplete(inp, this.props.allAssets)
   }
 }

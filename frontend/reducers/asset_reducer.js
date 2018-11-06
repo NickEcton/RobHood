@@ -7,7 +7,7 @@ export const assetReducer = (oldState = {}, action) => {
     case RECEIVE_CURRENT_ASSET:
       return { stock: action.asset }
     case RECEIVE_CLOSING_PRICE:
-      return Object.assign({}, oldState, {closing: action.asset[0].close})
+      return Object.assign({}, oldState, {closing: action.asset[0].marketClose})
     case RECEIVE_ALL_ASSETS:
       return Object.assign({}, oldState, {allAssets: action.assets})
     case RECEIVE_CRYPTO:

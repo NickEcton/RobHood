@@ -18,6 +18,9 @@ class toggleButton extends React.Component {
     let aboutBorder = document.querySelector(".about-border")
     let newsHeaderContent = document.querySelector(".the-news-header-content")
     let collectionsHeaderTitle = document.querySelector(".collections-header-title")
+    let dropdown = document.querySelector(".autocomplete")
+    let inputText = document.querySelector("#myInput")
+
     document.querySelector(".take-order").classList.toggle("market-closed")
     document.querySelector(".review-button-cont").classList.toggle("market-closed")
     document.querySelector(".review-button-btn").classList.toggle("market-closed")
@@ -32,6 +35,10 @@ class toggleButton extends React.Component {
     this.change(input, 'borderColor', 'rgb(23, 23, 24)', 'rgb(250, 250, 250)')
     this.change(input, 'color', 'rgb(255, 255, 255)', 'rgb(23, 23, 24)' )
     this.change(nav, 'background', 'rgb(27, 27, 29)', 'rgba(255, 255, 255, 1)')
+    this.change(dropdown, 'background', "rgb(27, 27, 29)", "rgba(255, 255, 255, 1)");
+    this.change(dropdown, 'color', "white", "black");
+    this.changeBorder(dropdown);
+    this.change(inputText, 'color', "white", "black");
 
     tags.forEach((tag)=> {
       this.changeBackground(tag)

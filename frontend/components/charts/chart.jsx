@@ -5,7 +5,7 @@ import CustomToolTip from './custom_tool_tip.jsx'
 class TinyLineChart extends React.Component {
   constructor(props) {
     super(props)
-
+    
   }
 
 

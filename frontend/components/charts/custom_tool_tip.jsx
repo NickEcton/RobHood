@@ -5,7 +5,7 @@ class CustomToolTip extends React.Component {
 
   constructor(props) {
     super(props)
-
+    
   }
 
   componentWillReceiveProps(nextProps) {
