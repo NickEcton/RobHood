@@ -44,9 +44,9 @@ class AssetForm extends React.Component {
     this.setState( {data: this.formatOneDayData(this.props.charts.oneDay)} ))
   }
     let inp = document.querySelector("#myInput")
-  if (inp) {
+  if (inp && this.props.allAssets) {
     
-    this.autoComplete(inp, this.props.allAssets)
+    this.autoComplete(inp, this.formatAllAssets(this.props.allAssets))
   }
 }
 
@@ -74,6 +74,23 @@ class AssetForm extends React.Component {
     return result 
   }
 
+  formatAllAssets(array) {
+    let result = {} 
+    array.forEach((el) => {
+      let letter = el.Symbol[0].toUpperCase()
+      
+      if (result[letter]) {
+        result[letter].push(el)
+      } else {
+        result[letter] = []
+        result[letter].push(el) 
+      }
+    })
+    
+    return result 
+  }
+  
+
   switch(e) {
 
     if (e.target.value === "oneDay") {
@@ -95,6 +112,7 @@ class AssetForm extends React.Component {
   }
 
   autoComplete(inp, arr) {
+    
     var currentFocus;
     inp.addEventListener("input", function(e) {
         var a, b, i, val = this.value;
@@ -105,22 +123,23 @@ class AssetForm extends React.Component {
         a.setAttribute("id", this.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
         this.parentNode.appendChild(a);
-        for (i = 0; i < Object.keys(arr).length; i++) {
-          if (arr[i].Symbol.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-            if (document.querySelectorAll(".autocomplete-items > div").length === 5) {
-              break
-            }
-            b = document.createElement("DIV");
-            b.innerHTML = "<strong>" + arr[i].Symbol.substr(0, val.length) + "</strong>";
-            b.innerHTML += arr[i].Symbol.substr(val.length);
-            b.innerHTML += "<input type='hidden' value='" + arr[i].Symbol + "'>";
+        let syms = arr[val[0].toUpperCase()]
+        for (i = 0; i < syms.length; i++) {
+          if (document.querySelectorAll(".autocomplete-items > DIV").length === 5) {          
+            break
+          }      
+          if (syms[i].Symbol.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+             b = document.createElement("DIV");
+            b.innerHTML = "<strong>" + syms[i].Symbol.substr(0, val.length) + "</strong>";
+            b.innerHTML += syms[i].Symbol.substr(val.length);
+            b.innerHTML += "<input type='hidden' value='" + syms[i].Symbol + "'>";
                 b.addEventListener("click", function(e) {
                 document.querySelector("#myInput").value= e.target.children[1].value
                 closeAllLists();
                 document.querySelector("#hidden-submit").click()
             });
-            a.appendChild(b);
-          }
+            a.appendChild(b);  
+          }   
         }
     });
     inp.addEventListener("keydown", function(e) {
