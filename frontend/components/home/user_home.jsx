@@ -37,7 +37,7 @@ class userHome extends React.Component {
 
   componentDidUpdate(prevProps) {
     let inp = document.querySelector("#myInput")
-    if (inp) {
+    if (inp && this.props.payload.asset.allAssets) {
       this.autoComplete(inp, this.formatAllAssets(this.props.payload.asset.allAssets));
     }
   }
@@ -174,7 +174,6 @@ class userHome extends React.Component {
           this.props.payload.portfolio.orders.forEach((el) => {
             myHash[el.asset_id] = myHash[el.asset_id] || 0
             myHash[el.asset_id] += el.quantity
-            console.log(myHash)
           })
           portItems = Object.keys(myHash)
           return portItems
