@@ -1,7 +1,7 @@
 export const receiveChartOneDay = (symbol) => {
   return $.ajax({
     method: "GET",
-    url: `https://api.iextrading.com/1.0/stock/${symbol}/chart/1d?chartInterval=20`
+    url: `https://api.iextrading.com/1.0/stock/${symbol}/chart/1d`
   })
 }
 

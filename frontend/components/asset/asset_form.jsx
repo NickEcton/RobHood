@@ -26,7 +26,7 @@ class AssetForm extends React.Component {
     this.props.receiveChartOneYear(this.props.asset.stock.company.symbol),
     this.props.receiveChartFiveYear(this.props.asset.stock.company.symbol)]))
     this.props.receiveAllAssets().then(()=>this.props.receiveNews(this.props.asset.stock.company.companyName.split(" ")[0])).then(()=>
-    this.setState( {data: this.props.charts.oneDay} ))
+    this.setState( {data: this.formatOneDayData(this.props.charts.oneDay)} ))
   }
   componentDidUpdate(prevProps) {
 
@@ -40,7 +40,8 @@ class AssetForm extends React.Component {
     this.props.receiveChartThreeMonth(this.props.asset.stock.company.symbol),
     this.props.receiveChartOneYear(this.props.asset.stock.company.symbol),
     this.props.receiveChartFiveYear(this.props.asset.stock.company.symbol)])
-    this.props.receiveAllAssets().then(()=>this.props.receiveNews(this.props.asset.stock.company.companyName.split(" ")[0])).then(()=> this.setState( {data: this.props.charts.oneDay} ))
+    this.props.receiveAllAssets().then(()=>this.props.receiveNews(this.props.asset.stock.company.companyName.split(" ")[0])).then(()=>
+    this.setState( {data: this.formatOneDayData(this.props.charts.oneDay)} ))
   }
     let inp = document.querySelector("#myInput")
   if (inp) {
@@ -53,6 +54,24 @@ class AssetForm extends React.Component {
     if (document.querySelector("body").classList.contains("market-closed")) {
       document.querySelector("body").classList.toggle("market-closed")
     }
+  }
+
+  formatOneDayData(array) {
+    
+    let fixed_price = this.props.asset.closing
+    let result = [] 
+    array.forEach((el)=> {
+
+      if (el.high === -1) {
+        el.high = fixed_price
+        el.low = fixed_price
+      } else {
+        fixed_price = el.high
+      }
+      result.push(el) 
+    })
+
+    return result 
   }
 
   switch(e) {
