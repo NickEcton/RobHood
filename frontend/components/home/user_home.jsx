@@ -213,12 +213,32 @@ class userHome extends React.Component {
       let items = this.props.payload.assetPrices
       for (var key in items) {
         if (items.hasOwnProperty(key)) {
-          solution.push([key, items[key].quote.close, items[key].chart]);
+          solution.push([key, items[key].quote.close, this.formatOneDayData(items[key].chart)]);
           pieChartDatas.push({name: key, value: items[key].quote.close})
         }
 
     }
     return solution;
+    }
+
+    formatOneDayData(array) {
+    
+      let fixed_price = null 
+      let result = [] 
+      array.forEach((el)=> {
+        
+        if (el.high === -1 && fixed_price === null ) {
+        } else if (el.high == - 1){
+          el.high = fixed_price
+          el.low = fixed_price
+          result.push(el) 
+        } else {
+          fixed_price = el.high
+          result.push(el) 
+        }
+      })
+  
+      return result 
     }
 
   handleSubmit(e) {
