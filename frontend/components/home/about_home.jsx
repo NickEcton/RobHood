@@ -44,6 +44,7 @@ class aboutHome extends React.Component {
                 </h1>
                 <h4 className="third"> Robinhood lets you learn to invest in the stock market for free.</h4>
                 <Link to="/signup" className="SignInBtn">Sign Up</Link>
+                <Link to="/login" className="SignInBtn" style={{"margin-left" : "10px"}}>Demo</Link>
               </div>
             </div>
             <div className="half-the-div">

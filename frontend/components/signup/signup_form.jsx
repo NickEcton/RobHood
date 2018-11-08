@@ -107,7 +107,7 @@ class SignupForm extends React.Component {
               <button className="SignInBtn" type="submit">Sign Up!</button>
               </form>
               <div>
-              <p className="application-finish-link">Already started? <a href="/#/login">Log in to complete your application</a> </p>
+              <p className="application-finish-link">Already started? <a href="/#/login">Click here to Log in or try the Demo</a> </p>
               </div>
             </div>
             <video onEnded={this.ended} playsInline muted autoPlay width="320" height="240" className="gif-container" id='myvideo'>
