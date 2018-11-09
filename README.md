@@ -33,7 +33,7 @@ After searching a stock, this page will show all releveant information, includin
 
 <img src="https://github.com/NickEcton/RobHood/blob/master/AssetShowPage2.gif" width="100%" height="10%" />
 
-## Code Snippets
+## Code
 
 ### Compute portfolio composition using order history
 
