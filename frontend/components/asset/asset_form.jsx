@@ -270,7 +270,13 @@ class AssetForm extends React.Component {
    <div className="loader-cont">
          <Loader type="spinningBubbles" color="#21ce99" />
    </div>
- )} else {
+ )} else if (!this.props.asset.closing) {
+   return (
+     <div>
+       Apologies, our stock tracking software does not keep tallies on this asset, press back to continue.
+     </div>
+   )
+ } else {
     return (
       <div className="asset-show-main">
       <div className="asset-search-bar">
