@@ -15,7 +15,7 @@ export const receiveAllAssets = () => {
 export const receiveClosingPrice = (symbol) => {
   return $.ajax({
     method: "GET",
-    url: `https://api.iextrading.com/1.0/stock/${symbol}/chart/1d?chartLast=1`
+    url: `https://api.iextrading.com/1.0/stock/${symbol}/quote`
   })
 }
 
