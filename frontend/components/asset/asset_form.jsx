@@ -15,6 +15,7 @@ class AssetForm extends React.Component {
     this.switch = this.switch.bind(this)
     this.logThemOut = this.logThemOut.bind(this)
     this.calculatePriceChange = this.calculatePriceChange.bind(this)
+    this.goBack = this.goBack.bind(this)
   }
 
   componentDidMount() {
@@ -29,12 +30,13 @@ class AssetForm extends React.Component {
     this.setState( {data: this.formatOneDayData(this.props.charts.oneDay)} ))
   }
   componentDidUpdate(prevProps) {
-
+    
   if (this.props.match.params.symbol !== prevProps.match.params.symbol) {
+    
     if (document.querySelector("body").classList.contains("market-closed")) {
       document.querySelector("body").classList.toggle("market-closed")
     }
-    Promise.all([this.props.receiveClosingPrice(this.props.asset.stock.company.symbol),  this.props.receiveNews(this.props.asset.stock.company.companyName),
+    Promise.all([this.props.receiveClosingPrice(this.props.match.params.symbol),  this.props.receiveNews(this.props.asset.stock.company.companyName),
     this.props.receiveChartOneDay(this.props.asset.stock.company.symbol),
     this.props.receiveChartOneMonth(this.props.asset.stock.company.symbol),
     this.props.receiveChartThreeMonth(this.props.asset.stock.company.symbol),
@@ -256,6 +258,19 @@ class AssetForm extends React.Component {
 
   }
 
+  checkIt(e) {
+      const box = document.querySelector('.order-option-check')
+      const svg = document.querySelector('.checkity')
+      svg.style.display = svg.style.display === '' ? 'none' : ''
+    debugger 
+    }
+  
+
+  goBack(e) {  
+    e.preventDefault();
+    this.props.history.goBack();  
+  }
+
   handleOrderSubmit(e) {
     e.preventDefault();
 
@@ -272,9 +287,10 @@ class AssetForm extends React.Component {
    </div>
  )} else if (!this.props.asset.closing) {
    return (
-     <div>
-       Apologies, our stock tracking software does not keep tallies on this asset, press back to continue.
-     </div>
+    <div className="loader-cont">
+      <Loader type="spinningBubbles" color="red" />
+      <button style={{position: "absolute"}}onClick={this.goBack}>Return</button>
+    </div>
    )
  } else {
     return (
@@ -489,9 +505,11 @@ class AssetForm extends React.Component {
                                   <div>{(this.state.quantity * this.props.asset.closing).toFixed(2)}</div>
                                 </label></div>
                             </div>
-                            <div className="order-option-check" role="button" aria-disabled="false" tabIndex="0">
+                            <div className="order-option-check" role="button" aria-disabled="false" tabIndex="0" onClick={this.checkIt}>
                               <div className="order-option-checkbox-cont">
-                                <div role="checkbox" aria-checked="true" aria-labelledby="1" aria-disabled="false"></div>
+                                <div role="checkbox" aria-checked="true" aria-labelledby="1" aria-disabled="false">
+                                <svg className="checkity" style={{viewBox:"0 0 12 9", version:"1.1"}}><g fill-rule="evenodd" transform="rotate(45 6.914 7.621)"><rect width="2" height="10" x="4"></rect><rect width="5" height="2" y="8"></rect></g></svg>
+                                </div>
                               </div>
                               <span>This order should only execute during normal market hours.</span></div>
                             <div>
@@ -506,7 +524,7 @@ class AssetForm extends React.Component {
                                Buying Power Available
                             </div>
                           </div>
-                        </form>
+                        </form> 
                       </div>
                     </div>
                   </div>
