@@ -262,7 +262,6 @@ class AssetForm extends React.Component {
       const box = document.querySelector('.order-option-check')
       const svg = document.querySelector('.checkity')
       svg.style.display = svg.style.display === '' ? 'none' : ''
-    debugger 
     }
   
 
@@ -508,7 +507,7 @@ class AssetForm extends React.Component {
                             <div className="order-option-check" role="button" aria-disabled="false" tabIndex="0" onClick={this.checkIt}>
                               <div className="order-option-checkbox-cont">
                                 <div role="checkbox" aria-checked="true" aria-labelledby="1" aria-disabled="false">
-                                <svg className="checkity" style={{viewBox:"0 0 12 9", version:"1.1"}}><g fill-rule="evenodd" transform="rotate(45 6.914 7.621)"><rect width="2" height="10" x="4"></rect><rect width="5" height="2" y="8"></rect></g></svg>
+                                <svg className="checkity" style={{viewBox:"0 0 12 9", version:"1.1"}}><g fillRule="evenodd" transform="rotate(45 6.914 7.621)"><rect width="2" height="10" x="4"></rect><rect width="5" height="2" y="8"></rect></g></svg>
                                 </div>
                               </div>
                               <span>This order should only execute during normal market hours.</span></div>

@@ -6,7 +6,6 @@ class Api::PortfolioSnapshotsController < ApplicationController
 
   def show
     @portfolio_snapshots = PortfolioSnapshot.where(portfolio_id: params[:id])
-    debugger
 
     render json: @portfolio_snapshots
   end
