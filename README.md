@@ -1,4 +1,4 @@
-# Rob-Hood
+# Rob-Hood (Open-source api dependency currently deprecated, researching options for further use)
 
 Rob-Hood, a Robinhood clone, combines real-time stock and crypto-currency data with portfolio building functionality to give users the full stock-trading experience.
 
